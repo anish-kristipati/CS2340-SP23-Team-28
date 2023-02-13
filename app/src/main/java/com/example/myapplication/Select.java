@@ -1,12 +1,17 @@
 package com.example.myapplication;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.android.material.slider.Slider;
 
 import org.w3c.dom.Text;
 
@@ -35,8 +40,19 @@ public class Select extends AppCompatActivity {
                 return false;
             }
         });
+        Slider slider = findViewById(R.id.slider);
+        slider.addOnChangeListener(new Slider.OnChangeListener() {
+            @SuppressLint("RestrictedApi")
+            @Override
+            public void onValueChange(@NonNull Slider slider, float value, boolean fromUser) {
+                Integer slide_value = Math.round(value);
+                user.setDifficulty(slide_value);
+                charData.setText("Difficulty "+ user.getDifficulty());
+            }
+        });
 
     }
+
     public void selectCharacter1 (View view){
         user.setSprite("Monopoly Man");
         charData.setText("Character: Monopoly Man \n Difficulty:");

@@ -46,6 +46,9 @@ public class Player {
         return lives;
     }
 
+    public void setDifficulty(int difficulty) { this.difficulty = difficulty;}
+    public int getDifficulty() {return this.difficulty;}
+
     private void setLivesFromDifficulty() {
         switch (difficulty) {
             case 1:
