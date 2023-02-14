@@ -83,18 +83,18 @@ public class Player implements Parcelable {
 
     private void setLivesFromDifficulty() {
         switch (difficulty) {
-            case 1:
-                lives = 15;
-                break;
-            case 2:
-                lives = 10;
-                break;
-            case 3:
-                lives = 5;
-                break;
-            default:
-                lives = 0;
-                break;
+        case 1:
+            lives = 15;
+            break;
+        case 2:
+            lives = 10;
+            break;
+        case 3:
+            lives = 5;
+            break;
+        default:
+            lives = 0;
+            break;
         }
     }
 

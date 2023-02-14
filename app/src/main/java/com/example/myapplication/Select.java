@@ -11,20 +11,19 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.android.material.slider.Slider;
 
-import org.w3c.dom.Text;
 
 public class Select extends AppCompatActivity {
-    EditText inputText;
-    TextView header;
-    TextView charData;
-    Player user = new Player();
-    Button b2;
-    String output = "";
-    TextView warning;
+    private EditText inputText;
+    private TextView header;
+    private TextView charData;
+    private Player user = new Player();
+    private Button b2;
+    private String output = "";
+    private TextView warning;
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select);
@@ -38,16 +37,19 @@ public class Select extends AppCompatActivity {
         inputText.setOnKeyListener(new View.OnKeyListener() {
             public boolean onKey(View v, int keyCode, KeyEvent event) {
                 // If the event is a key-down event on the "enter" button
-                if ((event.getAction() == KeyEvent.ACTION_DOWN) &&
-                        (keyCode == KeyEvent.KEYCODE_ENTER)) {
-                    if (String.valueOf(inputText.getText()) == null || String.valueOf(inputText.getText()).equals("") || String.valueOf(inputText.getText()).trim().length() == 0) {
+                if ((event.getAction() == KeyEvent.ACTION_DOWN)
+                    && (keyCode == KeyEvent.KEYCODE_ENTER)) {
+                    if (String.valueOf(inputText.getText()) == null
+                        || String.valueOf(inputText.getText()).equals("")
+                        || String.valueOf(inputText.getText()).trim().length() == 0) {
                         warning.setVisibility(View.VISIBLE);
                     } else {
                         user.setName(String.valueOf(inputText.getText()));
                         warning.setVisibility(View.INVISIBLE);
                         header.setText("Welcome " + user.getName() + "!");
                     }
-                    if (user.getName() != null && user.getDifficulty() != 0 && user.getSprite() != null) {
+                    if (user.getName() != null && user.getDifficulty() != 0
+                        && user.getSprite() != null) {
                         b2.setEnabled(true);
                         b2.setOnClickListener(new View.OnClickListener() {
                             @Override
@@ -68,10 +70,11 @@ public class Select extends AppCompatActivity {
             @SuppressLint("RestrictedApi")
             @Override
             public void onValueChange(@NonNull Slider slider, float value, boolean fromUser) {
-                Integer slide_value = Math.round(value);
-                user.setDifficulty(slide_value);
+                Integer slideValue = Math.round(value);
+                user.setDifficulty(slideValue);
                 charData.setText(output + "\nDifficulty: " + user.getDifficulty());
-                if (user.getName() != null && user.getDifficulty() != 0 && user.getSprite() != null) {
+                if (user.getName() != null && user.getDifficulty() != 0
+                    && user.getSprite() != null) {
                     b2.setEnabled(true);
                     b2.setOnClickListener(new View.OnClickListener() {
                         @Override

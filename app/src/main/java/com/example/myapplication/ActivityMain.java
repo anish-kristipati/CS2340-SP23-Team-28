@@ -7,8 +7,9 @@ import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class activity_main extends AppCompatActivity {
-    Button b1;
+public class ActivityMain extends AppCompatActivity {
+    private Button b1;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -16,8 +17,8 @@ public class activity_main extends AppCompatActivity {
         b1 = findViewById(R.id.startGame);
         b1.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view){
-                Intent switchStatement = new Intent(activity_main.this,Select.class);
+            public void onClick(View view) {
+                Intent switchStatement = new Intent(ActivityMain.this, Select.class);
                 startActivity(switchStatement);
 
             }
