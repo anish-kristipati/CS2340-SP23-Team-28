@@ -1,16 +1,15 @@
 package com.example.myapplication;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 public class GameScreen extends AppCompatActivity {
-    private TextView charDisplay;
-    private TextView difficulty;
-    private TextView lives;
-    private TextView highScore;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -25,9 +24,9 @@ public class GameScreen extends AppCompatActivity {
         } else if (user.getSprite().equals("Shoe")) {
             picture.setImageResource(R.drawable.monopoly_shoe);
         }
-        charDisplay = findViewById(R.id.textView7);
+        TextView charDisplay = findViewById(R.id.textView7);
         charDisplay.setText("Hey " + user.getName());
-        difficulty = findViewById(R.id.textView10);
+        TextView difficulty = findViewById(R.id.textView10);
         switch (user.getDifficulty()) {
         case 1:
             difficulty.setText("Easy");
@@ -41,11 +40,21 @@ public class GameScreen extends AppCompatActivity {
         default:
             difficulty.setText("Easy");
         }
-        lives = findViewById(R.id.textView12);
+        TextView lives = findViewById(R.id.textView12);
         lives.setText("" + user.getLives());
-        highScore = findViewById(R.id.textView14);
+        TextView highScore = findViewById(R.id.textView14);
         highScore.setText("High Score " + user.getPoints());
 
+        Button b1 = findViewById(R.id.button);
+        b1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent switchStatement = new Intent(GameScreen.this, InGame.class);
+                switchStatement.putExtra("user", user);
+                startActivity(switchStatement);
+
+            }
+        });
 
     }
 }
