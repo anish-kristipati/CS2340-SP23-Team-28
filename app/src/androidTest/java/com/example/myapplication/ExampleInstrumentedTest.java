@@ -18,9 +18,48 @@ import static org.junit.Assert.*;
 @RunWith(AndroidJUnit4.class)
 public class ExampleInstrumentedTest {
     @Test
-    public void useAppContext() {
-        // Context of the app under test.
-        Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
-        assertEquals("com.example.myapplication", appContext.getPackageName());
+    public void testEasyLives(){
+        Player p = new Player();
+        p.setDifficulty(1);
+        assertEquals(15, p.getLives());
     }
+
+    @Test
+    public void testMediumLives(){
+        Player p = new Player();
+        p.setDifficulty(2);
+        assertEquals(10, p.getLives());
+    }
+
+    @Test
+    public void testHardLives(){
+        Player p = new Player();
+        p.setDifficulty(3);
+        assertEquals(5, p.getLives());
+    }
+
+    @Test
+    public void nullName(){
+        Player p = new Player();
+        assertEquals(false, p.nameValid(null));
+    }
+
+    @Test
+    public void blankName(){
+        Player p = new Player();
+        assertEquals(false, p.nameValid(""));
+    }
+
+    @Test
+    public void whitespaceName(){
+        Player p = new Player();
+        assertEquals(false, p.nameValid("    "));
+    }
+
+    @Test
+    public void validName(){
+        Player p = new Player();
+        assertEquals(true, p.nameValid("Bob"));
+    }
+
 }
