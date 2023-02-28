@@ -3,14 +3,11 @@ package com.example.myapplication;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 
-import com.example.myapplication.graphics.Player;
 
 public class OnSwipeListener extends GestureDetector.SimpleOnGestureListener {
 
-    private Player player;
 
-    public OnSwipeListener(Player player) {
-        this.player = player;
+    public OnSwipeListener() {
     }
 
     @Override
@@ -47,6 +44,7 @@ public class OnSwipeListener extends GestureDetector.SimpleOnGestureListener {
 
     /**
      * Override this method. The Direction enum will tell you how the user swiped.
+     *
      * @param direction Direction of swipe.
      * @return Returns if a direction is deteced.
      */

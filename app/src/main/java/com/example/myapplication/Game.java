@@ -78,4 +78,8 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
         return player;
 
     }
+
+    public SpriteSheet getSpriteSheet() {
+        return spriteSheet;
+    }
 }

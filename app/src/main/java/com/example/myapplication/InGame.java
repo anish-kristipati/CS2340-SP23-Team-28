@@ -31,7 +31,7 @@ public class InGame extends Activity implements View.OnTouchListener {
         this.setContentView(game1);
 
 
-        gestureDetector = new GestureDetector(this, new OnSwipeListener(player) {
+        gestureDetector = new GestureDetector(this, new OnSwipeListener() {
 
             @Override
             public boolean onSwipe(Direction direction) {
