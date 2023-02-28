@@ -36,7 +36,11 @@ public class SpriteSheet {
         case "Shoe":
             bitmap = BitmapFactory.decodeResource(context.getResources(), R.drawable.monopoly_shoe);
             break;
+        default:
+            System.out.println("Whoops");
+            break;
         }
+
     }
 
     public Bitmap getBackground() {

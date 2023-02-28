@@ -8,12 +8,11 @@ import android.view.MotionEvent;
 import android.view.SurfaceView;
 import android.view.View;
 
-import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.myapplication.graphics.Player;
 
 public class InGame extends Activity implements View.OnTouchListener {
-    GestureDetector gestureDetector;
+    private GestureDetector gestureDetector;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +55,10 @@ public class InGame extends Activity implements View.OnTouchListener {
                     if (player.getLeft() < 1280) {
                         player.moveRight();
                     }
+                    break;
+                default:
+                    System.out.println("Whoops");
+                    break;
                 }
                 return true;
             }

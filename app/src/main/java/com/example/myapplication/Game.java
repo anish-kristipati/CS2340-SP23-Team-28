@@ -2,19 +2,13 @@ package com.example.myapplication;
 
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.Paint;
-import android.graphics.Rect;
-import android.view.GestureDetector;
-import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
-import android.view.View;
 
 import androidx.core.content.ContextCompat;
 
 import com.example.myapplication.graphics.Player;
-import com.example.myapplication.graphics.Sprite;
 import com.example.myapplication.graphics.SpriteSheet;
 
 public class Game extends SurfaceView implements SurfaceHolder.Callback {
@@ -61,18 +55,6 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
     @Override
     public void surfaceDestroyed(SurfaceHolder surfaceHolder) {
 
-    }
-
-    @Override
-    public boolean onTouchEvent(MotionEvent event) {
-        switch (event.getAction()) {
-        case MotionEvent.ACTION_MOVE:
-
-            return true;
-        case MotionEvent.ACTION_UP:
-        }
-
-        return super.onTouchEvent(event);
     }
 
     @Override

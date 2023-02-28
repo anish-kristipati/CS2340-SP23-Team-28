@@ -1,10 +1,8 @@
 package com.example.myapplication;
 
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.view.SurfaceHolder;
 
-import java.sql.SQLOutput;
 import java.util.Arrays;
 
 public class GameLoop extends Thread {
@@ -49,7 +47,9 @@ public class GameLoop extends Thread {
         int updatesCounter = 0;
         int framesCounter = 0;
 
-        long startTime, elapsedTime, sleepTime;
+        long startTime;
+        long elapsedTime;
+        long sleepTime;
 
         Canvas canvas = null;
 

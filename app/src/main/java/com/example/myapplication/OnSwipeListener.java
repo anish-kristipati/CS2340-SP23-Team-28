@@ -7,7 +7,7 @@ import com.example.myapplication.graphics.Player;
 
 public class OnSwipeListener extends GestureDetector.SimpleOnGestureListener {
 
-    Player player;
+    private Player player;
 
     public OnSwipeListener(Player player) {
         this.player = player;
@@ -47,6 +47,8 @@ public class OnSwipeListener extends GestureDetector.SimpleOnGestureListener {
 
     /**
      * Override this method. The Direction enum will tell you how the user swiped.
+     * @param direction Direction of swipe.
+     * @return Returns if a direction is deteced.
      */
     public boolean onSwipe(Direction direction) {
 
