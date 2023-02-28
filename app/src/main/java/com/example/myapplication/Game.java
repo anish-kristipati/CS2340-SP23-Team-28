@@ -20,9 +20,12 @@ import com.example.myapplication.graphics.SpriteSheet;
 public class Game extends SurfaceView implements SurfaceHolder.Callback {
 
     private GameLoop gameLoop;
-    private final Player player;
+    private Player player;
 
     private SpriteSheet spriteSheet;
+    private int difficulty;
+    private int lives;
+
     public Game(Context context) {
         super(context);
 
@@ -31,11 +34,20 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
         surfaceHolder.addCallback(this);
         this.gameLoop = new GameLoop(this, surfaceHolder);
         spriteSheet = new SpriteSheet(context);
-        this.player = new Player(getContext(), 640, 2770, spriteSheet.getPlayerSprite());
-
         this.setFocusable(true);
 
     }
+
+    public void setSprite(String character) {
+        spriteSheet.setBitmap(character);
+        this.player = new Player(getContext(), 640, 2770, spriteSheet.getPlayerSprite());
+    }
+
+    public void setCharacterData(int lives, int difficulty) {
+        this.lives = lives;
+        this.difficulty = difficulty;
+    }
+
     @Override
     public void surfaceCreated(SurfaceHolder surfaceHolder) {
         gameLoop.startLoop();
@@ -62,30 +74,23 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
 
         return super.onTouchEvent(event);
     }
+
     @Override
     public void draw(Canvas canvas) {
         super.draw(canvas);
         drawUPS(canvas);
-        drawFPS(canvas);
         player.draw(canvas);
+        drawUPS(canvas);
         invalidate();
     }
 
     public void drawUPS(Canvas canvas) {
-        String updatesPerSecond = Double.toString(gameLoop.getAverageUPS());
         Paint paint = new Paint();
-        paint.setColor(ContextCompat.getColor(getContext(), R.color.black));
-        paint.setTextSize(50);
-        canvas.drawText("UPS: " + updatesPerSecond, 100, 100, paint);
+        paint.setColor(ContextCompat.getColor(getContext(), R.color.white));
+        paint.setTextSize(100);
+        canvas.drawText("Lives: " + lives + "\nDifficulty: " + difficulty, 100, 320, paint);
     }
 
-    public void drawFPS(Canvas canvas) {
-        String framesPerSecond = Double.toString(gameLoop.getAverageFPS());
-        Paint paint = new Paint();
-        paint.setColor(ContextCompat.getColor(getContext(), R.color.black));
-        paint.setTextSize(50);
-        canvas.drawText("FPS: " + framesPerSecond, 100, 200, paint);
-    }
 
     public Player getPlayer() {
         return player;

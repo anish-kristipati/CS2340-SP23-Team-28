@@ -61,9 +61,7 @@ public class Player implements Parcelable {
     }
 
     public boolean nameValid(String name) {
-        return !(name == null
-                || name.equals("")
-                || name.trim().length() == 0);
+        return !(name == null || name.equals("") || name.trim().length() == 0);
     }
 
     public int getPoints() {

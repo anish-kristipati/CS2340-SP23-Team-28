@@ -10,25 +10,25 @@ public class Sprite {
     public Sprite(SpriteSheet spriteSheet, Rect rect) {
         this.spriteSheet = spriteSheet;
         this.rect = rect;
-        
+
     }
 
     public void draw(Canvas canvas, double x, double y) {
         drawBackground(canvas);
         canvas.drawBitmap(
-                spriteSheet.getBitmap(),
-                null,
-                new Rect((int) x, (int) y, (int)x + 142, (int) y + 142),
-                null
+            spriteSheet.getBitmap(),
+            null,
+            new Rect((int) x, (int) y, (int) x + 142, (int) y + 142),
+            null
         );
     }
 
     public void drawBackground(Canvas canvas) {
         canvas.drawBitmap(
-                spriteSheet.getBackground(),
-                null,
-                new Rect(0,0,1440,2920),
-                null
+            spriteSheet.getBackground(),
+            null,
+            new Rect(0, 0, 1440, 2920),
+            null
         );
     }
 

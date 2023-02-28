@@ -7,13 +7,14 @@ public class Player extends Rectangle {
     private Sprite sprite;
 
     public Player(Context context, double x, double y, Sprite sprite) {
-        super(context, x,y,sprite.getWidth(),sprite.getHeight());
+        super(context, x, y, sprite.getWidth(), sprite.getHeight());
         this.sprite = sprite;
     }
 
+
     @Override
     public void draw(Canvas canvas) {
-        sprite.draw(canvas,left, top);
+        sprite.draw(canvas, left, top);
     }
 
     public void moveUp() {
@@ -23,6 +24,7 @@ public class Player extends Rectangle {
     public void moveDown() {
         top += 160;
     }
+
     public void moveLeft() {
         left -= 160;
     }
