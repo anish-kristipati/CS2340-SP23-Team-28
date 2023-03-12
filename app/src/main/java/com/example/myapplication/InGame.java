@@ -25,7 +25,7 @@ public class InGame extends Activity implements View.OnTouchListener {
         SurfaceView game = new Game(this);
         Game game1 = (Game) game;
         game1.setSprite(user.getSprite());
-        game1.setCharacterData(user.getLives(), user.getDifficulty());
+        game1.setCharacterData(user.getLives(), user.getDifficulty(),user.getPoints());
         game.setBackgroundColor(Color.WHITE);
         Player player = game1.getPlayer();
         this.setContentView(game1);
