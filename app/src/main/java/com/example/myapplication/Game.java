@@ -19,6 +19,12 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
     private SpriteSheet spriteSheet;
     private int difficulty;
     private int lives;
+    private int points;
+
+    private double minPos;
+
+    private final int[] pointsArray = {0, 50, 50, 50, 0, 60, 60, 60, 60, 0, 30, 30, 0, 60, 60, 0, 15, 100};
+    private int pointIndex;
 
     public Game(Context context) {
         super(context);
@@ -37,9 +43,12 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
         this.player = new Player(getContext(), 640, 2770, spriteSheet.getPlayerSprite());
     }
 
-    public void setCharacterData(int lives, int difficulty) {
+    public void setCharacterData(int lives, int difficulty, int points) {
         this.lives = lives;
         this.difficulty = difficulty;
+        this.points = points;
+        this.minPos = player.getTop();
+        this.pointIndex = 0;
     }
 
     @Override
@@ -60,17 +69,22 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
     @Override
     public void draw(Canvas canvas) {
         super.draw(canvas);
-        drawUPS(canvas);
+        calculatePoints(canvas);
         player.draw(canvas);
-        drawUPS(canvas);
+        calculatePoints(canvas);
         invalidate();
     }
 
-    public void drawUPS(Canvas canvas) {
+    public void calculatePoints(Canvas canvas) {
         Paint paint = new Paint();
-        paint.setColor(ContextCompat.getColor(getContext(), R.color.white));
-        paint.setTextSize(100);
-        canvas.drawText("Lives: " + lives + "\nDifficulty: " + difficulty, 100, 320, paint);
+        paint.setColor(ContextCompat.getColor(getContext(), R.color.yellow));
+        paint.setTextSize(80);
+        if(player.getTop() < minPos) {
+            minPos = player.getTop();
+            pointIndex++;
+            points += pointsArray[pointIndex];
+        }
+        canvas.drawText("Points: " + points + "  Lives: " + lives + " Difficulty: " + difficulty, 100, 120, paint);
     }
 
 
