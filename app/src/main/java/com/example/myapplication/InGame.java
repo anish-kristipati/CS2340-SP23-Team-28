@@ -9,7 +9,7 @@ import android.view.SurfaceView;
 import android.view.View;
 
 
-import com.example.myapplication.graphics.Player;
+import com.example.myapplication.graphics.SpriteRectangle;
 
 public class InGame extends Activity implements View.OnTouchListener {
     private GestureDetector gestureDetector;
@@ -27,7 +27,7 @@ public class InGame extends Activity implements View.OnTouchListener {
         game1.setSprite(user.getSprite());
         game1.setCharacterData(user.getLives(), user.getDifficulty(),user.getPoints());
         game.setBackgroundColor(Color.WHITE);
-        Player player = game1.getPlayer();
+        SpriteRectangle player = game1.getPlayer();
         this.setContentView(game1);
 
 
