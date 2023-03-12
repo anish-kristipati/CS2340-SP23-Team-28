@@ -3,10 +3,10 @@ package com.example.myapplication.graphics;
 import android.content.Context;
 import android.graphics.Canvas;
 
-public class Player extends Rectangle {
+public class SpriteRectangle extends Rectangle {
     private Sprite sprite;
 
-    public Player(Context context, double x, double y, Sprite sprite) {
+    public SpriteRectangle(Context context, double x, double y, Sprite sprite) {
         super(context, x, y, sprite.getWidth(), sprite.getHeight());
         this.sprite = sprite;
     }

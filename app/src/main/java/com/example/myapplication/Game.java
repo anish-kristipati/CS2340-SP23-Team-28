@@ -8,13 +8,13 @@ import android.view.SurfaceView;
 
 import androidx.core.content.ContextCompat;
 
-import com.example.myapplication.graphics.Player;
+import com.example.myapplication.graphics.SpriteRectangle;
 import com.example.myapplication.graphics.SpriteSheet;
 
 public class Game extends SurfaceView implements SurfaceHolder.Callback {
 
     private GameLoop gameLoop;
-    private Player player;
+    private SpriteRectangle player;
 
     private SpriteSheet spriteSheet;
     private int difficulty;
@@ -40,7 +40,7 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
 
     public void setSprite(String character) {
         spriteSheet.setBitmap(character);
-        this.player = new Player(getContext(), 640, 2770, spriteSheet.getPlayerSprite());
+        this.player = new SpriteRectangle(getContext(), 640, 2770, spriteSheet.getPlayerSprite());
     }
 
     public void setCharacterData(int lives, int difficulty, int points) {
@@ -88,7 +88,7 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
     }
 
 
-    public Player getPlayer() {
+    public SpriteRectangle getPlayer() {
         return player;
 
     }
