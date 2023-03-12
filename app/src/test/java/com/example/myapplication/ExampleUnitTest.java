@@ -7,13 +7,6 @@ import static org.junit.Assert.*;
 import org.mockito.Mock;
 
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.view.MotionEvent;
-import android.view.View;
-
-import com.example.myapplication.graphics.Rectangle;
-import com.example.myapplication.graphics.SpriteSheet;
 
 /**
  * Example local unit test, which will execute on the development machine (host).
@@ -78,13 +71,13 @@ public class ExampleUnitTest {
     @Test
     public void directionLeft() {
         OnSwipeListener swipe = new OnSwipeListener();
-        assertEquals(swipe.getDirection(45, 45, 0, 0), OnSwipeListener.Direction.left);
+        assertEquals(swipe.getDirection(180, 180, 0, 0), OnSwipeListener.Direction.left);
     }
 
     @Test
     public void directionUp() {
         OnSwipeListener swipe = new OnSwipeListener();
-        assertEquals(swipe.getDirection(45, 45, 45, 0), OnSwipeListener.Direction.up);
+        assertEquals(swipe.getDirection(100, 100, 45, 12), OnSwipeListener.Direction.up);
     }
 
 
