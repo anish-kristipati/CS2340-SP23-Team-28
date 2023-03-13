@@ -19,6 +19,7 @@ public class SpriteRectangle extends Rectangle {
         sprite.draw(canvas, left, top, resizeX, resizeY);
     }
     //TODO Change method name
+    //TODO refactor image background name
     public void draw1(Canvas canvas) {
         sprite.draw1(canvas,left,top,resizeX,resizeY);
     }
