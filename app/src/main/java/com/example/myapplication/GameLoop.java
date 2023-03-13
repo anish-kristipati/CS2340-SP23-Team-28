@@ -6,7 +6,8 @@ import android.view.SurfaceHolder;
 import java.util.Arrays;
 
 public class GameLoop extends Thread {
-    private Game game;
+    //TODO CHECK USEFULNESS --> REFACTOR
+   private Game game;
     private final SurfaceHolder surfaceHolder;
 
     private boolean isRunning;

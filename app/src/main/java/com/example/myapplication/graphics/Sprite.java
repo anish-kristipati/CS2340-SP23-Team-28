@@ -13,12 +13,21 @@ public class Sprite {
 
     }
 
-    public void draw(Canvas canvas, double x, double y) {
+    public void draw(Canvas canvas, double x, double y, int resizeX, int resizeY) {
         drawBackground(canvas);
         canvas.drawBitmap(
             spriteSheet.getBitmap(),
             null,
-            new Rect((int) x, (int) y, (int) x + 142, (int) y + 142),
+            new Rect((int) x, (int) y, (int) x + resizeX, (int) y + resizeY),
+            null
+        );
+    }
+    public void draw1(Canvas canvas, double x, double y, int resizeX, int resizeY) {
+        //drawBackground(canvas); TODO fix
+        canvas.drawBitmap(
+            spriteSheet.getBitmap(),
+            null,
+            new Rect((int) x, (int) y, (int) x + resizeX, (int) y + resizeY),
             null
         );
     }
