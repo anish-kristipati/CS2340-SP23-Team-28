@@ -36,6 +36,15 @@ public class SpriteSheet {
         case "Shoe":
             bitmap = BitmapFactory.decodeResource(context.getResources(), R.drawable.monopoly_shoe);
             break;
+        case "motorcycle":
+            bitmap = BitmapFactory.decodeResource(context.getResources(), R.drawable.motorcycle);
+            break;
+        case "blueCar":
+            bitmap = BitmapFactory.decodeResource(context.getResources(), R.drawable.bluecar);
+            break;
+        case "truck":
+            bitmap = BitmapFactory.decodeResource(context.getResources(), R.drawable.truck);
+            break;
         default:
             System.out.println("Whoops");
             break;
@@ -47,7 +56,7 @@ public class SpriteSheet {
         return background;
     }
 
-    public Sprite getPlayerSprite() {
+    public Sprite getSprite() {
         return new Sprite(this, new Rect(0, 0, bitmap.getWidth(), bitmap.getHeight()));
     }
 }
