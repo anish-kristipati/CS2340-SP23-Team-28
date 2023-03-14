@@ -22,6 +22,7 @@ public class Sprite {
             null
         );
     }
+
     public void draw1(Canvas canvas, double x, double y, int resizeX, int resizeY) {
         //drawBackground(canvas); TODO fix
         canvas.drawBitmap(

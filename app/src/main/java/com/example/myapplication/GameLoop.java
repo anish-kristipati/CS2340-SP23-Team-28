@@ -5,8 +5,9 @@ import android.view.SurfaceHolder;
 
 import java.util.Arrays;
 
+//TODO CHECK USEFULNESS --> REFACTOR
 public class GameLoop extends Thread {
-    //TODO CHECK USEFULNESS --> REFACTOR
+    /*
    private Game game;
     private final SurfaceHolder surfaceHolder;
 
@@ -105,4 +106,6 @@ public class GameLoop extends Thread {
         }
 
     }
+
+     */
 }

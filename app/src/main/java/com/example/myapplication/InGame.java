@@ -1,11 +1,11 @@
 package com.example.myapplication;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
-import android.view.SurfaceView;
 import android.view.View;
 
 
@@ -13,22 +13,30 @@ import com.example.myapplication.graphics.SpriteRectangle;
 
 public class InGame extends Activity implements View.OnTouchListener {
     private GestureDetector gestureDetector;
+    private Game game;
+    private SpriteRectangle player;
+    private Player user;
 
+    @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        com.example.myapplication.Player user = getIntent().getParcelableExtra("user");
+        try {
+            user = getIntent().getParcelableExtra("user");
+            user.getSprite();
+        } catch (NullPointerException e) {
+            user = new Player();
+            user.setSprite("dawg");
+            user.setDifficulty(1);
+        }
         //Set content view to game
-
-        //SurfaceView game = (Game)(findViewById(R.id.game1));
-        SurfaceView game = new Game(this);
-        Game game1 = (Game) game;
-        game1.setSprite(user.getSprite());
-        game1.setCharacterData(user.getLives(), user.getDifficulty(),user.getPoints());
+        game = new Game(this);
+        game.setSprite(user.getSprite());
+        game.setCharacterData(user.getLives(), user.getDifficulty(), user.getPoints());
         game.setBackgroundColor(Color.WHITE);
-        SpriteRectangle player = game1.getPlayer();
-        this.setContentView(game1);
+        player = game.getPlayer();
+        this.setContentView(game);
 
 
         gestureDetector = new GestureDetector(this, new OnSwipeListener() {
@@ -69,9 +77,21 @@ public class InGame extends Activity implements View.OnTouchListener {
     }
 
 
+    @SuppressLint("ClickableViewAccessibility")
     public boolean onTouch(View v, MotionEvent event) {
         gestureDetector.onTouchEvent(event);
         return true;
+    }
+
+    public Game getGame() {
+        return game;
+    }
+
+    public Player getUser() {
+        return user;
+    }
+    public SpriteRectangle getPlayer() {
+        return player;
     }
 
 }

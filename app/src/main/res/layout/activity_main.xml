@@ -13,7 +13,7 @@
         android:layout_marginTop="341dp"
         android:layout_marginEnd="140dp"
         android:layout_marginBottom="342dp"
-        android:text="Start Game"
+        android:text="@string/start_game"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
