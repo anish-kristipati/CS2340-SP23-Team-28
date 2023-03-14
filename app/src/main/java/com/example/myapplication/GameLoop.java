@@ -1,9 +1,6 @@
 package com.example.myapplication;
 
-import android.graphics.Canvas;
-import android.view.SurfaceHolder;
 
-import java.util.Arrays;
 
 //TODO CHECK USEFULNESS --> REFACTOR
 public class GameLoop extends Thread {
