@@ -10,19 +10,25 @@ import androidx.core.content.ContextCompat;
 
 import com.example.myapplication.graphics.SpriteRectangle;
 import com.example.myapplication.graphics.SpriteSheet;
-
+//TODO Refactor variable names and add variable speeds based on lane (higher lane has higher speed, lower lanes have lower speed)
 public class Game extends SurfaceView implements SurfaceHolder.Callback {
 
     private GameLoop gameLoop;
     private SpriteRectangle player;
     private SpriteRectangle truck;
+    private SpriteRectangle truck1;
     private SpriteRectangle car;
+    private SpriteRectangle car1;
     private SpriteRectangle bike;
+    private SpriteRectangle bike1;
 
     private SpriteSheet spriteSheetPlayer;
     private SpriteSheet spriteSheetTruck;
+
     private SpriteSheet spriteSheetCar;
+
     private SpriteSheet spriteSheetBike;
+
     private int difficulty;
     private int lives;
     private int points;
@@ -32,7 +38,7 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
     private int resizeX;
     private int resizeY;
 
-    private final int[] pointsArray = {0, 50, 50, 50, 0, 60, 60, 60, 60, 0, 30, 30, 0, 60, 60, 0, 15, 100};
+    private final int[] pointsArray = {0, 50, 30, 15, 0, 60, 60, 60, 60, 0, 50, 30, 0, 60, 60, 0, 15, 100};
     private int pointIndex;
 
     public Game(Context context) {
@@ -55,6 +61,11 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
         this.truck.setShift(spriteData[5]);
 
 
+        this.truck1 = new SpriteRectangle(getContext(), 0, 1176, spriteSheetTruck.getSprite());
+        this.truck1.setResizeXY(spriteData[3],spriteData[4]);
+        this.truck1.setShift(spriteData[5]);
+
+
 
         this.spriteSheetCar = new SpriteSheet(context);
         this.spriteSheetCar.setBitmap("blueCar");
@@ -63,11 +74,21 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
         this.car.setShift(spriteData[8]);
 
 
+        this.car1 = new SpriteRectangle(getContext(), 1014, 1014, spriteSheetCar.getSprite());
+        this.car1.setResizeXY(spriteData[6],spriteData[7]);
+        this.car1.setShift(spriteData[8]);
+
+
+
         this.spriteSheetBike = new SpriteSheet(context);
         this.spriteSheetBike.setBitmap("motorcycle");
         this.bike = new SpriteRectangle(getContext(), 0, 2284, spriteSheetBike.getSprite());
         this.bike.setResizeXY(spriteData[9],spriteData[10]);
         this.bike.setShift(spriteData[11]);
+
+        this.bike1 = new SpriteRectangle(getContext(), 0, 204, spriteSheetBike.getSprite());
+        this.bike1.setResizeXY(spriteData[9],spriteData[10]);
+        this.bike1.setShift(spriteData[11]);
     }
 
     public void setSprite(String character) {
@@ -107,26 +128,35 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
         obstacleMovement();
         player.draw(canvas);
         truck.draw1(canvas);
+        truck1.draw1(canvas);
         car.draw1(canvas);
+        car1.draw1(canvas);
         bike.draw1(canvas);
+        bike1.draw1(canvas);
         calculatePoints(canvas); //TODO Clean
         invalidate();
     }
     private void obstacleMovement() {
         if(truck.getLeft() > 0) {
             truck.moveLeft();
+            truck1.moveLeft();
         } else {
             truck.setLeft(1014);
+            truck1.setLeft(1014);
         }
         if(car.getLeft() <= 1440) {
             car.moveRight();
+            car1.moveRight();
         } else {
             car.setLeft(0);
+            car1.setLeft(0);
         }
         if(bike.getLeft() <= 1440) {
             bike.moveRight();
+            bike1.moveRight();
         } else {
             bike.setLeft(0);
+            bike1.setLeft(0);
         }
 
     }
