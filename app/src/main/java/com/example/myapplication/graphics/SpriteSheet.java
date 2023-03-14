@@ -9,9 +9,9 @@ import com.example.myapplication.R;
 
 public class SpriteSheet {
     private Bitmap bitmap;
-    private Bitmap background;
+    private final Bitmap background;
 
-    private Context context;
+    private final Context context;
 
     public SpriteSheet(Context context) {
         BitmapFactory.Options bitmapOptions = new BitmapFactory.Options();
