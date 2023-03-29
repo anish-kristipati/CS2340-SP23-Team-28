@@ -45,13 +45,26 @@ public class SpriteRectangle extends Rectangle {
 
     public void moveLeft() {
         left -= shift;
+        right -= shift;
     }
 
     public void moveRight() {
         left += shift;
+        right += shift;
     }
 
     public void setLeft(int location) {
         this.left = location;
+    }
+    public void setRight(int location){
+        this.right = location;
+    }
+
+    public Sprite getSprite(){
+        return this.sprite;
+    }
+
+    public String toString(){ // for debugging
+        return("left, right, bottom, top: " + this.left + " " + this.right + " " + this.bottom + " " + this.top);
     }
 }

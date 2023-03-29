@@ -17,6 +17,7 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
 
     private GameLoop gameLoop;
     private SpriteRectangle player;
+    // private Player player;
     private SpriteRectangle truck;
     private SpriteRectangle truck1;
     private SpriteRectangle car;
@@ -120,6 +121,7 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
 
     }
 
+
     @Override
     public void draw(Canvas canvas) {
         super.draw(canvas);
@@ -143,6 +145,8 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
         } else {
             truck.setLeft(1014);
             truck1.setLeft(1014);
+            truck.setRight(1014 + truck.getSprite().getWidth());
+            truck1.setRight(1014 + truck1.getSprite().getWidth());
         }
         if (car.getLeft() <= 1440) {
             car.moveRight();
@@ -150,6 +154,8 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
         } else {
             car.setLeft(0);
             car1.setLeft(0);
+            car.setRight(car.getSprite().getWidth());
+            car1.setRight(car1.getSprite().getWidth());
         }
         if (bike.getLeft() <= 1440) {
             bike.moveRight();
@@ -157,6 +163,8 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
         } else {
             bike.setLeft(0);
             bike1.setLeft(0);
+            bike.setRight(bike.getSprite().getWidth());
+            bike1.setRight(bike1.getSprite().getWidth());
         }
 
     }
@@ -170,6 +178,12 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
             pointIndex++;
             points += pointsArray[pointIndex];
         }
+
+        if(player.obstacleIntersect(bike) || player.obstacleIntersect(bike1) || player.obstacleIntersect(car) || player.obstacleIntersect(car1)
+            || player.obstacleIntersect(truck) || player.obstacleIntersect(truck1)){
+            points /= 2;
+        }
+        // TODO make player lose life
         canvas.drawText("Points: " + points + "  Lives: " + lives + " Difficulty: " + difficulty,
             100, 120, paint);
     }
