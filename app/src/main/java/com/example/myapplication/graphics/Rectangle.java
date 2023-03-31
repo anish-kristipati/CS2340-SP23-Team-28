@@ -18,7 +18,12 @@ public abstract class Rectangle {
 
     }
 
-    boolean intersects(Rectangle other) {
+    public boolean obstacleIntersect(Rectangle other){ // TODO make vehicle class
+        return !(this.left > other.getRight() || this.right < other.getLeft()
+                || this.top != other.getTop() || this.bottom != other.getBottom());
+    }
+    public boolean intersects(Rectangle other) {
+        //System.out.println(other.getRight());
         return !(this.left > other.getRight() || this.right < other.getLeft()
             || this.top > other.getBottom() || this.bottom < other.getTop());
     }
