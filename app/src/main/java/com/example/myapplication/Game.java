@@ -90,6 +90,62 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
         this.bike1.setShift(spriteData[11]);
     }
 
+    private boolean checkCollision(SpriteRectangle sr) {
+        if (player.getLeft() <= sr.getLeft() && player.getRight() >= sr.getLeft()) {
+            System.out.println(player.getLeft());
+            System.out.println(player.getRight());
+            System.out.println(sr.getLeft());
+            System.out.println(sr.getRight());
+            System.out.println("flag 1");
+            return true;
+        } else if (player.getRight() >= sr.getRight() && player.getLeft() <= sr.getRight()) {
+            System.out.println("flag 1");
+            return true;
+        } else if (player.getRight() <= sr.getRight() && player.getLeft() >= sr.getLeft()) {
+            System.out.println("flag 1");
+            return true;
+        }
+        return false;
+    }
+
+    private void obstacleCollision(Canvas canvas) {
+        Paint paint = new Paint();
+        paint.setColor(ContextCompat.getColor(getContext(), R.color.yellow));
+        paint.setTextSize(80);
+        if (player.getYLevel() == 1) {
+            if (checkCollision(truck)) {
+                canvas.drawText("Points: " + points + "  Lives: " + lives-- + " Difficulty: " + difficulty,
+                        100, 120, paint);
+            }
+        } else if (player.getYLevel() == 2) {
+            if (checkCollision(car)) {
+                canvas.drawText("Points: " + points + "  Lives: " + lives-- + " Difficulty: " + difficulty,
+                        100, 120, paint);
+            }
+        } else if (player.getYLevel() == 3) {
+            if (checkCollision(bike)) {
+                canvas.drawText("Points: " + points + "  Lives: " + lives-- + " Difficulty: " + difficulty,
+                        100, 120, paint);
+            }
+        } else if (player.getYLevel() == 10) {
+            if (checkCollision(truck1)) {
+                canvas.drawText("Points: " + points + "  Lives: " + lives-- + " Difficulty: " + difficulty,
+                        100, 120, paint);
+            }
+        } else if (player.getYLevel() == 11) {
+            if (checkCollision(car1)) {
+                canvas.drawText("Points: " + points + "  Lives: " + lives-- + " Difficulty: " + difficulty,
+                        100, 120, paint);
+            }
+        } else if (player.getYLevel() == 16) {
+            if (checkCollision(bike1)) {
+                canvas.drawText("Points: " + points + "  Lives: " + lives-- + " Difficulty: " + difficulty,
+                        100, 120, paint);
+            }
+        }
+
+    }
+
     public void setSprite(String character) {
         spriteSheetPlayer.setBitmap(character);
         this.player = new SpriteRectangle(getContext(), 670, 2770,

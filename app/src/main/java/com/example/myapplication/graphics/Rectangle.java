@@ -9,13 +9,13 @@ public abstract class Rectangle {
     protected double right;
     protected double top;
     protected double bottom;
-
+    protected int yLevel;
     public Rectangle(Context context, double x, double y, double w, double h) {
         left = x;
         right = x + w;
         top = y;
         bottom = y + h;
-
+        yLevel = 0;
     }
 
     public boolean obstacleIntersect(Rectangle other){ // TODO make vehicle class
@@ -45,4 +45,6 @@ public abstract class Rectangle {
     public double getBottom() {
         return bottom;
     }
+
+    public int getYLevel() { return yLevel; }
 }

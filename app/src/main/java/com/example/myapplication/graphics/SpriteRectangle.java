@@ -8,7 +8,6 @@ public class SpriteRectangle extends Rectangle {
     private int resizeX;
     private int resizeY;
     private int shift;
-
     public SpriteRectangle(Context context, double x, double y, Sprite sprite) {
         super(context, x, y, sprite.getWidth(), sprite.getHeight());
         this.sprite = sprite;
@@ -37,10 +36,12 @@ public class SpriteRectangle extends Rectangle {
 
     public void moveUp() {
         top -= 160;
+        yLevel++;
     }
 
     public void moveDown() {
         top += 160;
+        yLevel--;
     }
 
     public void moveLeft() {
