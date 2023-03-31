@@ -11,7 +11,7 @@ public class Player implements Parcelable {
     private int points;
     private int lives;
     private int difficulty;
-
+    private int yLevel;
     private final int[] pointsArray =
         {0, 50, 30, 15, 0, 60, 60, 60, 60, 0, 50, 30, 0, 60, 60, 0, 15, 100};
 
