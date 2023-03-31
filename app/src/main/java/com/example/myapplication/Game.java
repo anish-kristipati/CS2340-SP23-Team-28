@@ -14,8 +14,6 @@ import com.example.myapplication.graphics.SpriteSheet;
 //TODO Refactor variable names and add variable speeds based on lane
 // (higher lane has higher speed, lower lanes have lower speed)
 public class Game extends SurfaceView implements SurfaceHolder.Callback {
-
-    private GameLoop gameLoop;
     private SpriteRectangle player;
     // private Player player;
     private SpriteRectangle truck;
