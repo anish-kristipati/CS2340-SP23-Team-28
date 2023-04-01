@@ -10,11 +10,12 @@ import com.example.myapplication.R;
 public class SpriteSheet {
     private Bitmap bitmap;
     private final Bitmap background;
-
+    private BitmapFactory.Options bitmapOptions;
     private final Context context;
 
     public SpriteSheet(Context context) {
-        BitmapFactory.Options bitmapOptions = new BitmapFactory.Options();
+        bitmapOptions = new BitmapFactory.Options();
+        bitmapOptions.inScaled = false;
         this.context = context;
         bitmap = BitmapFactory.decodeResource(context.getResources(), R.drawable.monopoly_shoe);
         background =
@@ -28,22 +29,22 @@ public class SpriteSheet {
     public void setBitmap(String character) {
         switch (character) {
         case "Monopoly Man":
-            bitmap = BitmapFactory.decodeResource(context.getResources(), R.drawable.monopoly_man);
+            bitmap = BitmapFactory.decodeResource(context.getResources(), R.drawable.monopoly_man, bitmapOptions);
             break;
         case "Dawg":
-            bitmap = BitmapFactory.decodeResource(context.getResources(), R.drawable.monopoly_dog);
+            bitmap = BitmapFactory.decodeResource(context.getResources(), R.drawable.monopoly_dog,bitmapOptions);
             break;
         case "Shoe":
-            bitmap = BitmapFactory.decodeResource(context.getResources(), R.drawable.monopoly_shoe);
+            bitmap = BitmapFactory.decodeResource(context.getResources(), R.drawable.monopoly_shoe,bitmapOptions);
             break;
         case "motorcycle":
-            bitmap = BitmapFactory.decodeResource(context.getResources(), R.drawable.motorcycle);
+            bitmap = BitmapFactory.decodeResource(context.getResources(), R.drawable.motorcycle,bitmapOptions);
             break;
         case "blueCar":
-            bitmap = BitmapFactory.decodeResource(context.getResources(), R.drawable.bluecar);
+            bitmap = BitmapFactory.decodeResource(context.getResources(), R.drawable.bluecar,bitmapOptions);
             break;
         case "truck":
-            bitmap = BitmapFactory.decodeResource(context.getResources(), R.drawable.truck);
+            bitmap = BitmapFactory.decodeResource(context.getResources(), R.drawable.truck,bitmapOptions);
             break;
         default:
             System.out.println("Whoops");
@@ -58,5 +59,8 @@ public class SpriteSheet {
 
     public Sprite getSprite() {
         return new Sprite(this, new Rect(0, 0, bitmap.getWidth(), bitmap.getHeight()));
+    }
+    public int getWidth() {
+        return bitmap.getWidth();
     }
 }
