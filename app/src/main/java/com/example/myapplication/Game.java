@@ -161,7 +161,7 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
                 playerReset();
             }
 
-        } else if (player.getYLevel() == 6 || player.getYLevel() == 7) {
+        } else if (player.getYLevel() == 6 || player.getYLevel() == 7 || player.getYLevel() == 8) {
             if (player.getLeft() >= 0 && player.getLeft() < 450 ||
                 player.getRight() > 790 && player.getRight() < 975 || player.getRight() > 1320) {
                 canvas.drawText(
@@ -169,8 +169,6 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
                     100, 120, paint);
                 playerReset();
             }
-        } else if (player.getYLevel() == 8) {
-            //TODO fix water tiles
         } else if (player.getYLevel() == 10) {
             if (checkCollision(truck1)) {
                 System.out.println("TRUCK1");
