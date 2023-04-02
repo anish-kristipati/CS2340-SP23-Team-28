@@ -17,7 +17,7 @@ public class GameOverScreen extends AppCompatActivity {
 
         setContentView(R.layout.game_over);
         TextView points = (TextView) findViewById(R.id.points);
-        points.setText("Points: " + Game.getPoints());
+        points.setText("Points: " + Game.getMaxPoints());
         Button exit = findViewById(R.id.exitgame);
         exit.setOnClickListener(new View.OnClickListener() {
             @Override

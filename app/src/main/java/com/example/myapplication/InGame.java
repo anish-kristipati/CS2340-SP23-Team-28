@@ -2,6 +2,7 @@ package com.example.myapplication;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.GestureDetector;
@@ -39,27 +40,33 @@ public class InGame extends Activity implements View.OnTouchListener {
         this.setContentView(game);
 
 
+
         gestureDetector = new GestureDetector(this, new OnSwipeListener() {
 
             @Override
             public boolean onSwipe(Direction direction) {
                 switch (direction) {
                 case up:
+                    endGame();
                     if (player.getTop() > 142) {
+
                         player.moveUp();
                     }
                     break;
                 case down:
+                    endGame();
                     if (player.getTop() < 2770) {
                         player.moveDown();
                     }
                     break;
                 case left:
+                    endGame();
                     if (player.getLeft() > 0) {
                         player.moveLeft();
                     }
                     break;
                 case right:
+                    endGame();
                     if (player.getLeft() < 1280) {
                         player.moveRight();
                     }
@@ -82,7 +89,13 @@ public class InGame extends Activity implements View.OnTouchListener {
         gestureDetector.onTouchEvent(event);
         return true;
     }
+    public void endGame() {
+        if(game.lives <= 0 || game.getPointIndex() >= 15) {
+            Intent switchStatement = new Intent(InGame.this, GameOverScreen.class);
+            startActivity(switchStatement);
 
+        }
+    }
     public Game getGame() {
         return game;
     }
