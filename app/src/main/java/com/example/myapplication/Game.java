@@ -97,10 +97,10 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
             System.out.println("flag 1");
             return true;
         } else if (player.getRight() >= sr.getRight() && player.getLeft() <= sr.getRight()) {
-            System.out.println("flag 1");
+            System.out.println("flag 2");
             return true;
         } else if (player.getRight() <= sr.getRight() && player.getLeft() >= sr.getLeft()) {
-            System.out.println("flag 1");
+            System.out.println("flag 3");
             return true;
         }
         return false;
@@ -188,15 +188,18 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
         car1.draw1(canvas);
         bike.draw1(canvas);
         bike1.draw1(canvas);
+        obstacleCollision(canvas);
         calculatePoints(canvas); //TODO Clean
         invalidate();
     }
 
     private void obstacleMovement() {
         if (truck.getLeft() > 0) {
+            //System.out.println("Left: "+ truck.getLeft()+" Right: "+truck.getRight());
             truck.moveLeft();
             truck1.moveLeft();
         } else {
+            //System.out.println(truck.getLeft());
             truck.setLeft(1014);
             truck1.setLeft(1014);
             truck.setRight(1014 + truck.getSprite().getWidth());
