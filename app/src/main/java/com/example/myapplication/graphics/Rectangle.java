@@ -50,4 +50,6 @@ public abstract class Rectangle {
     }
 
     public int getYLevel() { return yLevel; }
+
+    public void setYLevel(int value) {this.yLevel = value;}
 }

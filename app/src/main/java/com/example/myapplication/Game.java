@@ -108,6 +108,16 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
         return false;
     }
 
+    private void playerReset() {
+        player.setYLevel(0);
+        player.setLeft(670);
+        player.setRight(812);
+        player.setTop(2770);
+        pointIndex = 0;
+        points = 0;
+
+    }
+
     private void obstacleCollision(Canvas canvas) {
         Paint paint = new Paint();
         paint.setColor(ContextCompat.getColor(getContext(), R.color.yellow));
@@ -119,33 +129,72 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
         }
         if (player.getYLevel() == 1) {
             if (checkCollision(truck)) {
-                canvas.drawText("Points: " + points + "  Lives: " + lives-- + " Difficulty: " + difficulty,
-                        100, 120, paint);
+                System.out.println(
+                    "TRUCK LEFT: " + truck.getLeft() + " TRUCK RIGHT: " + truck.getRight());
+                System.out.println(
+                    "PLAYER LEFT: " + player.getLeft() + " PLAYER RIGHT: " + player.getRight() +
+                        "Width " + (player.getLeft() - player.getRight()));
+                canvas.drawText(
+                    "Points: " + points + "  Lives: " + lives-- + " Difficulty: " + difficulty,
+                    100, 120, paint);
+                playerReset();
             }
         } else if (player.getYLevel() == 2) {
             if (checkCollision(car)) {
-                canvas.drawText("Points: " + points + "  Lives: " + lives-- + " Difficulty: " + difficulty,
-                        100, 120, paint);
+                System.out.println("CAR");
+                canvas.drawText(
+                    "Points: " + points + "  Lives: " + lives-- + " Difficulty: " + difficulty,
+                    100, 120, paint);
+                playerReset();
             }
         } else if (player.getYLevel() == 3) {
             if (checkCollision(bike)) {
-                canvas.drawText("Points: " + points + "  Lives: " + lives-- + " Difficulty: " + difficulty,
-                        100, 120, paint);
+                System.out.println("BIKE");
+                canvas.drawText(
+                    "Points: " + points + "  Lives: " + lives-- + " Difficulty: " + difficulty,
+                    100, 120, paint);
+                playerReset();
             }
+        } else if (player.getYLevel() == 5) {
+            if (player.getLeft() >= 0 && player.getLeft() < 510 ||
+                player.getRight() >= 1000 && player.getRight() <= 1440) {
+                playerReset();
+            }
+
+        } else if (player.getYLevel() == 6 || player.getYLevel() == 7) {
+            if (player.getLeft() >= 0 && player.getLeft() < 450 ||
+                player.getRight() > 790 && player.getRight() < 975 || player.getRight() > 1320) {
+                playerReset();
+            }
+        } else if (player.getYLevel() == 8) {
+            //TODO fix water tiles
         } else if (player.getYLevel() == 10) {
             if (checkCollision(truck1)) {
-                canvas.drawText("Points: " + points + "  Lives: " + lives-- + " Difficulty: " + difficulty,
-                        100, 120, paint);
+                System.out.println("TRUCK1");
+                canvas.drawText(
+                    "Points: " + points + "  Lives: " + lives-- + " Difficulty: " + difficulty,
+                    100, 120, paint);
+                playerReset();
             }
         } else if (player.getYLevel() == 11) {
             if (checkCollision(car1)) {
-                canvas.drawText("Points: " + points + "  Lives: " + lives-- + " Difficulty: " + difficulty,
-                        100, 120, paint);
+                System.out.println("CAR1");
+                canvas.drawText(
+                    "Points: " + points + "  Lives: " + lives-- + " Difficulty: " + difficulty,
+                    100, 120, paint);
+                playerReset();
+            }
+        } else if (player.getYLevel() == 13 || player.getYLevel() == 14) {
+            if (player.getLeft() >= 0 && player.getLeft() < 450 ||
+                player.getRight() > 790 && player.getRight() < 975 || player.getRight() > 1320) {
+                playerReset();
             }
         } else if (player.getYLevel() == 16) {
             if (checkCollision(bike1)) {
-                canvas.drawText("Points: " + points + "  Lives: " + lives-- + " Difficulty: " + difficulty,
-                        100, 120, paint);
+                canvas.drawText(
+                    "Points: " + points + "  Lives: " + lives-- + " Difficulty: " + difficulty,
+                    100, 120, paint);
+                playerReset();
             }
         }
 
@@ -157,6 +206,8 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
             spriteSheetPlayer.getSprite()); // TODO --> This line sets player original position
         this.player.setResizeXY(spriteData[0], spriteData[1]);
         this.player.setShift(spriteData[2]);
+        System.out.println(spriteSheetPlayer.getWidth());
+        System.out.println(player.getLeft() + " " + player.getRight());
     }
 
     public static int getPoints(){

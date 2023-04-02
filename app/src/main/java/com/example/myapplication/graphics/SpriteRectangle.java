@@ -8,6 +8,7 @@ public class SpriteRectangle extends Rectangle {
     private int resizeX;
     private int resizeY;
     private int shift;
+
     public SpriteRectangle(Context context, double x, double y, Sprite sprite) {
         super(context, x, y, sprite.getWidth(), sprite.getHeight());
         this.sprite = sprite;
@@ -43,7 +44,6 @@ public class SpriteRectangle extends Rectangle {
         top += 160;
         yLevel--;
     }
-
     public void moveLeft() {
         left -= shift;
         right -= shift;
@@ -57,15 +57,21 @@ public class SpriteRectangle extends Rectangle {
     public void setLeft(int location) {
         this.left = location;
     }
-    public void setRight(int location){
+
+    public void setRight(int location) {
         this.right = location;
     }
 
-    public Sprite getSprite(){
+    public void setTop(int location) {
+        this.top = location;
+    }
+
+    public Sprite getSprite() {
         return this.sprite;
     }
 
-    public String toString(){ // for debugging
-        return("left, right, bottom, top: " + this.left + " " + this.right + " " + this.bottom + " " + this.top);
+    public String toString() { // for debugging
+        return ("left, right, bottom, top: " + this.left + " " + this.right + " " + this.bottom +
+            " " + this.top);
     }
 }

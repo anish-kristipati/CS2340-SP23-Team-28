@@ -29,7 +29,7 @@ public class SpriteSheet {
     public void setBitmap(String character) {
         switch (character) {
         case "Monopoly Man":
-            bitmap = BitmapFactory.decodeResource(context.getResources(), R.drawable.monopoly_man, bitmapOptions);
+            bitmap = BitmapFactory.decodeResource(context.getResources(), R.drawable.monopoly_man,bitmapOptions);
             break;
         case "Dawg":
             bitmap = BitmapFactory.decodeResource(context.getResources(), R.drawable.monopoly_dog,bitmapOptions);
