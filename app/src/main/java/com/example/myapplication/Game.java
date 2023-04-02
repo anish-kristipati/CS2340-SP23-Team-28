@@ -5,7 +5,7 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
-
+import android.content.Intent;
 import androidx.core.content.ContextCompat;
 
 import com.example.myapplication.graphics.SpriteRectangle;
@@ -27,8 +27,9 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
 
     private int difficulty;
     private int lives;
-    private int points;
-    private final int[] spriteData = {142, 142, 160, 426, 142, 2, 284, 142, 4, 142, 142, 5};
+    private static int points;
+    private static int maxPoints;
+    private final int[] spriteData = {142, 142, 160, 426, 142, 12, 284, 142, 10, 142, 142, 8};
     //TODO ADD NEW SPRITES AND SPRITE SETTER METHODS (PRIVATE)
     private double minPos;
 
@@ -90,10 +91,18 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
 
     private boolean checkCollision(SpriteRectangle sr) {
         if (player.getLeft() <= sr.getLeft() && player.getRight() >= sr.getLeft()) {
+            /*
+            System.out.println(player.getLeft());
+            System.out.println(player.getRight());
+            System.out.println(sr.getLeft());
+            System.out.println(sr.getRight());
+            System.out.println("flag 1");*/
             return true;
         } else if (player.getRight() >= sr.getRight() && player.getLeft() <= sr.getRight()) {
+           // System.out.println("flag 2");
             return true;
         } else if (player.getRight() <= sr.getRight() && player.getLeft() >= sr.getLeft()) {
+            //System.out.println("flag 3");
             return true;
         }
         return false;
@@ -113,6 +122,11 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
         Paint paint = new Paint();
         paint.setColor(ContextCompat.getColor(getContext(), R.color.yellow));
         paint.setTextSize(80);
+        if(lives<=0){
+            Context context = getContext();
+            Intent intent = new Intent(context, GameOverScreen.class);
+            context.startActivity(intent);
+        }
         if (player.getYLevel() == 1) {
             if (checkCollision(truck)) {
                 System.out.println(
@@ -196,6 +210,12 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
         System.out.println(player.getLeft() + " " + player.getRight());
     }
 
+    public static int getPoints(){
+        return points;
+    }
+    public static int getMaxPoints(){
+        return maxPoints;
+    }
     public void setCharacterData(int lives, int difficulty, int points) {
         this.lives = lives;
         this.difficulty = difficulty;
@@ -276,15 +296,10 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
         paint.setTextSize(80);
         if (player.getTop() < minPos) {
             minPos = player.getTop();
-            pointIndex++;
-            points += pointsArray[pointIndex];
+            points += pointsArray[++pointIndex];
+            maxPoints = Math.max(maxPoints, points);
         }
 
-        if (player.obstacleIntersect(bike) || player.obstacleIntersect(bike1) ||
-            player.obstacleIntersect(car) || player.obstacleIntersect(car1)
-            || player.obstacleIntersect(truck) || player.obstacleIntersect(truck1)) {
-            points /= 2;
-        }
         // TODO make player lose life
         canvas.drawText("Points: " + points + "  Lives: " + lives + " Difficulty: " + difficulty,
             100, 120, paint);
@@ -293,7 +308,6 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
 
     public SpriteRectangle getPlayer() {
         return player;
-
     }
 
     public SpriteSheet getSpriteSheetPlayer() {
