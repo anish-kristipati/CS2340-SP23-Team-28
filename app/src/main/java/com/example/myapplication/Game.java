@@ -245,16 +245,10 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
         paint.setTextSize(80);
         if (player.getTop() < minPos) {
             minPos = player.getTop();
-            pointIndex++;
-            points += pointsArray[pointIndex];
+            points += pointsArray[++pointIndex];
             maxPoints = Math.max(maxPoints, points);
         }
 
-        /*
-        if(player.obstacleIntersect(bike) || player.obstacleIntersect(bike1) || player.obstacleIntersect(car) || player.obstacleIntersect(car1)
-            || player.obstacleIntersect(truck) || player.obstacleIntersect(truck1)){
-            points /= 2;
-        }*/
         // TODO make player lose life
         canvas.drawText("Points: " + points + "  Lives: " + lives + " Difficulty: " + difficulty,
             100, 120, paint);
@@ -263,7 +257,6 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
 
     public SpriteRectangle getPlayer() {
         return player;
-
     }
 
     public SpriteSheet getSpriteSheetPlayer() {
