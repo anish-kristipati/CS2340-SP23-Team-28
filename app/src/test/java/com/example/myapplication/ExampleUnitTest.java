@@ -181,6 +181,7 @@ public class ExampleUnitTest {
         int[] testPoints = p.getPointsArray();
         assertEquals(testPoints[17], 100);
     }
+
     @Test
     public void checkUserDefault() {
         ActivityController<InGame> controller = Robolectric.buildActivity(InGame.class);
@@ -188,6 +189,7 @@ public class ExampleUnitTest {
         InGame game = controller.get();
         assertNotNull(game.getUser());
     }
+
     @Test
     public void gameTest() {
         ActivityController<InGame> controller = Robolectric.buildActivity(InGame.class);
@@ -195,6 +197,7 @@ public class ExampleUnitTest {
         InGame game = controller.get();
         assertNotNull(game.getGame());
     }
+
     //TODO: Make super.onCreate for ingame instance not throw NullPointerException(does this sometimes)
     @Test
     public void leftBoundTest() {
@@ -255,6 +258,7 @@ public class ExampleUnitTest {
             assertTrue("null case", true);
         }
     }
+
     @Test
     public void yLevelTest() {
         try {
@@ -269,24 +273,29 @@ public class ExampleUnitTest {
             assertTrue("null case", true);
         }
     }
+
     @Test
     public void lastGameScreenTestButtonExit() {
-        try(ActivityController<GameOverScreen> controller = Robolectric.buildActivity(GameOverScreen.class)) {
+        try (ActivityController<GameOverScreen> controller = Robolectric.buildActivity(
+            GameOverScreen.class)) {
             controller.setup();
             GameOverScreen gameOver = controller.get();
             Button b1 = gameOver.findViewById(R.id.exitgame);
             assertEquals(b1.isEnabled(), true);
         }
     }
+
     @Test
-    public void lastGameScreenTestButtonRestart(){
-        try(ActivityController<GameOverScreen> controller = Robolectric.buildActivity(GameOverScreen.class)) {
+    public void lastGameScreenTestButtonRestart() {
+        try (ActivityController<GameOverScreen> controller = Robolectric.buildActivity(
+            GameOverScreen.class)) {
             controller.setup();
             GameOverScreen gameOver = controller.get();
             Button b1 = gameOver.findViewById(R.id.restart);
             assertEquals(b1.isEnabled(), true);
         }
     }
+
     @Test
     public void lastGameScreenTransition() {
         try (ActivityController<GameOverScreen> controller = Robolectric.buildActivity(
@@ -299,6 +308,7 @@ public class ExampleUnitTest {
             assertEquals(expectedIntent.getComponent(), actual.getComponent());
         }
     }
+
     @Test
     public void lastGameScreenPointTest() {
         //Tests static access to data
@@ -306,10 +316,11 @@ public class ExampleUnitTest {
             GameOverScreen.class)) {
             controller.setup();
             GameOverScreen gameOver = controller.get();
-            TextView points = (TextView)gameOver.findViewById(R.id.points);
+            TextView points = (TextView) gameOver.findViewById(R.id.points);
             assertEquals(points.getText().toString(), "Points: 0");
         }
     }
+
     @Test
     public void lastGameScreenTextTest() {
         //Tests static access to data
@@ -317,7 +328,7 @@ public class ExampleUnitTest {
             GameOverScreen.class)) {
             controller.setup();
             GameOverScreen gameOver = controller.get();
-            TextView points = (TextView)gameOver.findViewById(R.id.textView6);
+            TextView points = (TextView) gameOver.findViewById(R.id.textView6);
             assertEquals(points.getText().toString(), "Game Over!");
         }
     }

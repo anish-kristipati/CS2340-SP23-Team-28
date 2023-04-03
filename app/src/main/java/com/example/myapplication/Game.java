@@ -5,7 +5,7 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
-import android.content.Intent;
+
 
 import androidx.core.content.ContextCompat;
 
@@ -28,7 +28,7 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
     private final SpriteSheet spriteSheetPlayer;
 
     private int difficulty;
-    public static int lives;
+    private static int lives;
     private static int points;
     private static int maxPoints;
     private final int[] spriteData = {142, 142, 160, 426, 142, 2, 284, 142, 4, 142, 142, 6};
@@ -126,8 +126,8 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
                 System.out.println(
                     "TRUCK LEFT: " + truck.getLeft() + " TRUCK RIGHT: " + truck.getRight());
                 System.out.println(
-                    "PLAYER LEFT: " + player.getLeft() + " PLAYER RIGHT: " + player.getRight() +
-                        "Width " + (player.getLeft() - player.getRight()));
+                    "PLAYER LEFT: " + player.getLeft() + " PLAYER RIGHT: " + player.getRight()
+                        + "Width " + (player.getLeft() - player.getRight()));
                 canvas.drawText(
                     "Points: " + points + "  Lives: " + lives-- + " Difficulty: " + difficulty,
                     100, 120, paint);
@@ -150,8 +150,8 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
                 playerReset();
             }
         } else if (player.getYLevel() == 5) {
-            if (player.getLeft() >= 0 && player.getLeft() < 510 ||
-                player.getRight() >= 1000 && player.getRight() <= 1440) {
+            if (player.getLeft() >= 0 && player.getLeft() < 510
+                || player.getRight() >= 1000 && player.getRight() <= 1440) {
                 canvas.drawText(
                     "Points: " + points + "  Lives: " + lives-- + " Difficulty: " + difficulty,
                     100, 120, paint);
@@ -159,8 +159,8 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
             }
 
         } else if (player.getYLevel() == 6 || player.getYLevel() == 7 || player.getYLevel() == 8) {
-            if (player.getLeft() >= 0 && player.getLeft() < 450 ||
-                player.getRight() > 790 && player.getRight() < 975 || player.getRight() > 1320) {
+            if (player.getLeft() >= 0 && player.getLeft() < 450
+                || player.getRight() > 790 && player.getRight() < 975 || player.getRight() > 1320) {
                 canvas.drawText(
                     "Points: " + points + "  Lives: " + lives-- + " Difficulty: " + difficulty,
                     100, 120, paint);
@@ -183,8 +183,8 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
                 playerReset();
             }
         } else if (player.getYLevel() == 13 || player.getYLevel() == 14) {
-            if (player.getLeft() >= 0 && player.getLeft() < 450 ||
-                player.getRight() > 790 && player.getRight() < 975 || player.getRight() > 1320) {
+            if (player.getLeft() >= 0 && player.getLeft() < 450
+                || player.getRight() > 790 && player.getRight() < 975 || player.getRight() > 1320) {
                 canvas.drawText(
                     "Points: " + points + "  Lives: " + lives-- + " Difficulty: " + difficulty,
                     100, 120, paint);
@@ -311,6 +311,10 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
 
     public int getPointIndex() {
         return pointIndex;
+    }
+
+    public int getLives() {
+        return lives;
     }
 
     public SpriteSheet getSpriteSheetPlayer() {

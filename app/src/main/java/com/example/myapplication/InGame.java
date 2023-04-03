@@ -40,7 +40,6 @@ public class InGame extends Activity implements View.OnTouchListener {
         this.setContentView(game);
 
 
-
         gestureDetector = new GestureDetector(this, new OnSwipeListener() {
 
             @Override
@@ -89,13 +88,15 @@ public class InGame extends Activity implements View.OnTouchListener {
         gestureDetector.onTouchEvent(event);
         return true;
     }
+
     public void endGame() {
-        if(game.lives <= 0 || game.getPointIndex() >= 15) {
+        if (game.getLives() <= 0 || game.getPointIndex() >= 15) {
             Intent switchStatement = new Intent(InGame.this, GameOverScreen.class);
             startActivity(switchStatement);
 
         }
     }
+
     public Game getGame() {
         return game;
     }
@@ -103,6 +104,7 @@ public class InGame extends Activity implements View.OnTouchListener {
     public Player getUser() {
         return user;
     }
+
     public SpriteRectangle getPlayer() {
         return player;
     }

@@ -44,6 +44,7 @@ public class SpriteRectangle extends Rectangle {
         top += 160;
         yLevel--;
     }
+
     public void moveLeft() {
         left -= shift;
         right -= shift;
@@ -71,7 +72,7 @@ public class SpriteRectangle extends Rectangle {
     }
 
     public String toString() { // for debugging
-        return ("left, right, bottom, top: " + this.left + " " + this.right + " " + this.bottom +
-            " " + this.top);
+        return ("left, right, bottom, top: " + this.left + " " + this.right + " " + this.bottom
+            + " " + this.top);
     }
 }

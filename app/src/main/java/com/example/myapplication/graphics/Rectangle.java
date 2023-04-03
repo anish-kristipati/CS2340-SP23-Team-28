@@ -10,6 +10,7 @@ public abstract class Rectangle {
     protected double top;
     protected double bottom;
     protected int yLevel;
+
     public Rectangle(Context context, double x, double y, double w, double h) {
         left = x;
         right = x + w;
@@ -49,7 +50,11 @@ public abstract class Rectangle {
         return bottom;
     }
 
-    public int getYLevel() { return yLevel; }
+    public int getYLevel() {
+        return yLevel;
+    }
 
-    public void setYLevel(int value) {this.yLevel = value;}
+    public void setYLevel(int value) {
+        this.yLevel = value;
+    }
 }
