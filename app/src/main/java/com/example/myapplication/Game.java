@@ -14,6 +14,7 @@ import com.example.myapplication.graphics.SpriteSheet;
 
 //TODO Refactor variable names and add variable speeds based on lane
 // (higher lane has higher speed, lower lanes have lower speed)
+// TODO make the high score variable (maxPoints) persistent
 public class Game extends SurfaceView implements SurfaceHolder.Callback {
     private SpriteRectangle player;
     // private Player player;
@@ -61,11 +62,9 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
         this.truck.setResizeXY(spriteData[3], spriteData[4]);
         this.truck.setShift(spriteData[5]);
 
-
         this.truck1 = new SpriteRectangle(getContext(), 0, 1176, spriteSheetTruck.getSprite());
         this.truck1.setResizeXY(spriteData[3], spriteData[4]);
         this.truck1.setShift(spriteData[5]);
-
 
         SpriteSheet spriteSheetCar = new SpriteSheet(context);
         spriteSheetCar.setBitmap("blueCar");
@@ -73,11 +72,9 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
         this.car.setResizeXY(spriteData[6], spriteData[7]);
         this.car.setShift(spriteData[8]);
 
-
         this.car1 = new SpriteRectangle(getContext(), 1014, 1014, spriteSheetCar.getSprite());
         this.car1.setResizeXY(spriteData[6], spriteData[7]);
         this.car1.setShift(spriteData[8]);
-
 
         SpriteSheet spriteSheetBike = new SpriteSheet(context);
         spriteSheetBike.setBitmap("motorcycle");
@@ -245,7 +242,6 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
 
     }
 
-
     @Override
     public void draw(Canvas canvas) {
         super.draw(canvas);
@@ -265,11 +261,9 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
 
     private void obstacleMovement() {
         if (truck.getLeft() > 0) {
-            //System.out.println("Left: "+ truck.getLeft()+" Right: "+truck.getRight());
             truck.moveLeft();
             truck1.moveLeft();
         } else {
-            //System.out.println(truck.getLeft());
             truck.setLeft(1014);
             truck1.setLeft(1014);
             truck.setRight(1014 + truck.getSprite().getWidth());
@@ -305,7 +299,6 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
             points += pointsArray[++pointIndex];
             maxPoints = Math.max(maxPoints, points);
         }
-
         // TODO make player lose life
         canvas.drawText("Points: " + points + "  Lives: " + lives + " Difficulty: " + difficulty,
             100, 120, paint);
