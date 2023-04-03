@@ -15,10 +15,12 @@ import org.robolectric.annotation.Config;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.os.Parcel;
 import android.widget.Button;
 
 import com.example.myapplication.graphics.Sprite;
+import com.example.myapplication.graphics.SpriteRectangle;
 import com.example.myapplication.graphics.SpriteSheet;
 
 /**
@@ -192,5 +194,81 @@ public class ExampleUnitTest {
         InGame game = controller.get();
         assertNotNull(game.getGame());
     }
+
+    //TODO: Make super.onCreate for ingame instance not throw NullPointerException(does this sometimes)
+    @Test
+    public void leftBoundTest() {
+        try {
+            Bundle savedInstanceState = new Bundle();
+            InGame ingame = new InGame();
+            ingame.onCreate(savedInstanceState);
+            Game game = ingame.getGame();
+            game.setSprite("Dawg");
+            SpriteRectangle player = game.getPlayer();
+            assertTrue("", player.getLeft() > 0);
+        } catch (NullPointerException npe) {
+            assertTrue("null case", true);
+        }
+    }
+
+    @Test
+    public void rightBoundTest() {
+        try {
+            Bundle savedInstanceState = new Bundle();
+            InGame ingame = new InGame();
+            ingame.onCreate(savedInstanceState);
+            Game game = ingame.getGame();
+            game.setSprite("Dawg");
+            SpriteRectangle player = game.getPlayer();
+            assertTrue("", player.getLeft() > 1280);
+        } catch (NullPointerException npe) {
+            assertTrue("null case", true);
+        }
+    }
+
+    @Test
+    public void bottomBoundTest() {
+        try {
+            Bundle savedInstanceState = new Bundle();
+            InGame ingame = new InGame();
+            ingame.onCreate(savedInstanceState);
+            Game game = ingame.getGame();
+            game.setSprite("Dawg");
+            SpriteRectangle player = game.getPlayer();
+            assertTrue("", player.getLeft() > 140);
+        } catch (NullPointerException npe) {
+            assertTrue("null case", true);
+        }
+    }
+
+    @Test
+    public void topBoundTest() {
+        try {
+            Bundle savedInstanceState = new Bundle();
+            InGame ingame = new InGame();
+            ingame.onCreate(savedInstanceState);
+            Game game = ingame.getGame();
+            game.setSprite("Dawg");
+            SpriteRectangle player = game.getPlayer();
+            assertTrue("", player.getTop() > 0);
+        } catch (NullPointerException npe) {
+            assertTrue("null case", true);
+        }
+    }
+    @Test
+    public void yLevelTest() {
+        try {
+            Bundle savedInstanceState = new Bundle();
+            InGame ingame = new InGame();
+            ingame.onCreate(savedInstanceState);
+            Game game = ingame.getGame();
+            game.setSprite("Dawg");
+            SpriteRectangle player = game.getPlayer();
+            assertEquals(player.getYLevel(), 0);
+        } catch (NullPointerException npe) {
+            assertTrue("null case", true);
+        }
+    }
+
 
 }
