@@ -18,6 +18,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Parcel;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.example.myapplication.graphics.Sprite;
 import com.example.myapplication.graphics.SpriteRectangle;
@@ -194,7 +195,6 @@ public class ExampleUnitTest {
         InGame game = controller.get();
         assertNotNull(game.getGame());
     }
-
     //TODO: Make super.onCreate for ingame instance not throw NullPointerException(does this sometimes)
     @Test
     public void leftBoundTest() {
@@ -267,6 +267,58 @@ public class ExampleUnitTest {
             assertEquals(player.getYLevel(), 0);
         } catch (NullPointerException npe) {
             assertTrue("null case", true);
+        }
+    }
+    @Test
+    public void lastGameScreenTestButtonExit() {
+        try(ActivityController<GameOverScreen> controller = Robolectric.buildActivity(GameOverScreen.class)) {
+            controller.setup();
+            GameOverScreen gameOver = controller.get();
+            Button b1 = gameOver.findViewById(R.id.exitgame);
+            assertEquals(b1.isEnabled(), true);
+        }
+    }
+    @Test
+    public void lastGameScreenTestButtonRestart(){
+        try(ActivityController<GameOverScreen> controller = Robolectric.buildActivity(GameOverScreen.class)) {
+            controller.setup();
+            GameOverScreen gameOver = controller.get();
+            Button b1 = gameOver.findViewById(R.id.restart);
+            assertEquals(b1.isEnabled(), true);
+        }
+    }
+    @Test
+    public void lastGameScreenTransition() {
+        try (ActivityController<GameOverScreen> controller = Robolectric.buildActivity(
+            GameOverScreen.class)) {
+            controller.setup();
+            GameOverScreen gameOver = controller.get();
+            gameOver.findViewById(R.id.restart).performClick();
+            Intent expectedIntent = new Intent(gameOver, ActivityMain.class);
+            Intent actual = shadowOf(RuntimeEnvironment.application).getNextStartedActivity();
+            assertEquals(expectedIntent.getComponent(), actual.getComponent());
+        }
+    }
+    @Test
+    public void lastGameScreenPointTest() {
+        //Tests static access to data
+        try (ActivityController<GameOverScreen> controller = Robolectric.buildActivity(
+            GameOverScreen.class)) {
+            controller.setup();
+            GameOverScreen gameOver = controller.get();
+            TextView points = (TextView)gameOver.findViewById(R.id.points);
+            assertEquals(points.getText().toString(), "Points: 0");
+        }
+    }
+    @Test
+    public void lastGameScreenTextTest() {
+        //Tests static access to data
+        try (ActivityController<GameOverScreen> controller = Robolectric.buildActivity(
+            GameOverScreen.class)) {
+            controller.setup();
+            GameOverScreen gameOver = controller.get();
+            TextView points = (TextView)gameOver.findViewById(R.id.textView6);
+            assertEquals(points.getText().toString(), "Game Over!");
         }
     }
 
