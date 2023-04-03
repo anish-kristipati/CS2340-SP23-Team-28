@@ -117,6 +117,10 @@ public class Player implements Parcelable {
         return pointsArray;
     }
 
+    public void reset() {
+        yLevel = 0;
+        points = 0;
+    }
     @Override
     public int describeContents() {
         return 0;

@@ -333,5 +333,12 @@ public class ExampleUnitTest {
         }
     }
 
+    @Test
+    public void testResetPoints() {
+        com.example.myapplication.Player p = new Player();
+        p.setPoints(20);
+        p.reset();
+        assertEquals(p.getPoints(), 0);
+    }
 
 }
