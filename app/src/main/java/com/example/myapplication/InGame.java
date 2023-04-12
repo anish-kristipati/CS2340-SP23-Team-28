@@ -47,6 +47,7 @@ public class InGame extends Activity implements View.OnTouchListener {
                 switch (direction) {
                 case up:
                     endGame();
+                    winGame();
                     if (player.getTop() > 142) {
 
                         player.moveUp();
@@ -54,18 +55,21 @@ public class InGame extends Activity implements View.OnTouchListener {
                     break;
                 case down:
                     endGame();
+                    winGame();
                     if (player.getTop() < 2770) {
                         player.moveDown();
                     }
                     break;
                 case left:
                     endGame();
+                    winGame();
                     if (player.getLeft() > 0) {
                         player.moveLeft();
                     }
                     break;
                 case right:
                     endGame();
+                    winGame();
                     if (player.getLeft() < 1280) {
                         player.moveRight();
                     }
@@ -90,10 +94,17 @@ public class InGame extends Activity implements View.OnTouchListener {
     }
 
     public void endGame() {
-        if (game.getLives() <= 0 || game.getPointIndex() >= 15) {
+        if (game.getLives() <= 0) {
             Intent switchStatement = new Intent(InGame.this, GameOverScreen.class);
             startActivity(switchStatement);
 
+        }
+    }
+
+    public void winGame() {
+        if (player.getYLevel() >= 16) {
+            Intent switchStatement = new Intent(InGame.this, WinScreen.class);
+            startActivity(switchStatement);
         }
     }
 
