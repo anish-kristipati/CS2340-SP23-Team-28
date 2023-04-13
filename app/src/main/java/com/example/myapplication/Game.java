@@ -66,7 +66,6 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
         SpriteSheet spriteSheetTruck = new SpriteSheet(context);
         spriteSheetTruck.setBitmap("truck");
 
-
         this.truck = new SpriteRectangle(getContext(), 0, 2608, spriteSheetTruck.getSprite());
         this.truck.setResizeXY(spriteData[3], spriteData[4]);
         // this.truck.setShift(spriteData[5]);
@@ -104,19 +103,10 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
 
     private boolean checkCollision(SpriteRectangle sr) {
         if (player.getLeft() <= sr.getLeft() && player.getRight() >= sr.getLeft()) {
-            /*
-            System.out.println(player.getLeft());
-            System.out.println(player.getRight());
-            System.out.println(sr.getLeft());
-            System.out.println(sr.getRight());
-
-            System.out.println("flag 1");*/
             return true;
         } else if (player.getRight() >= sr.getRight() && player.getLeft() <= sr.getRight()) {
-            // System.out.println("flag 2");
             return true;
         } else if (player.getRight() <= sr.getRight() && player.getLeft() >= sr.getLeft()) {
-            //System.out.println("flag 3");
             return true;
         }
         return false;
@@ -129,7 +119,6 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
         player.setTop(2770);
         pointIndex = 0;
         points = 0;
-
     }
 
     private void obstacleCollision(Canvas canvas) {
@@ -138,11 +127,6 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
         paint.setTextSize(80);
         if (player.getYLevel() == 1) {
             if (checkCollision(truck)) {
-                System.out.println(
-                    "TRUCK LEFT: " + truck.getLeft() + " TRUCK RIGHT: " + truck.getRight());
-                System.out.println(
-                    "PLAYER LEFT: " + player.getLeft() + " PLAYER RIGHT: " + player.getRight()
-                        + "Width " + (player.getLeft() - player.getRight()));
                 canvas.drawText(
                     "Points: " + points + "  Lives: " + lives-- + " Difficulty: " + difficulty,
                     100, 120, paint);
@@ -150,7 +134,6 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
             }
         } else if (player.getYLevel() == 2) {
             if (checkCollision(car)) {
-                System.out.println("CAR");
                 canvas.drawText(
                     "Points: " + points + "  Lives: " + lives-- + " Difficulty: " + difficulty,
                     100, 120, paint);
@@ -158,7 +141,6 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
             }
         } else if (player.getYLevel() == 3) {
             if (checkCollision(bike)) {
-                System.out.println("BIKE");
                 canvas.drawText(
                     "Points: " + points + "  Lives: " + lives-- + " Difficulty: " + difficulty,
                     100, 120, paint);
@@ -183,7 +165,6 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
             }
         } else if (player.getYLevel() == 10) {
             if (checkCollision(truck1)) {
-                System.out.println("TRUCK1");
                 canvas.drawText(
                     "Points: " + points + "  Lives: " + lives-- + " Difficulty: " + difficulty,
                     100, 120, paint);
@@ -191,7 +172,6 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
             }
         } else if (player.getYLevel() == 11) {
             if (checkCollision(car1)) {
-                System.out.println("CAR1");
                 canvas.drawText(
                     "Points: " + points + "  Lives: " + lives-- + " Difficulty: " + difficulty,
                     100, 120, paint);
@@ -213,7 +193,6 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
                 playerReset();
             }
         }
-
     }
 
     public void setSprite(String character) {
@@ -222,8 +201,6 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
             spriteSheetPlayer.getSprite()); // TODO --> This line sets player original position
         this.player.setResizeXY(spriteData[0], spriteData[1]);
         this.player.setShift(spriteData[2]);
-        System.out.println(spriteSheetPlayer.getWidth());
-        System.out.println(player.getLeft() + " " + player.getRight());
     }
 
     public static void addPoints(int add){
@@ -282,7 +259,6 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
 
     private void obstacleMovement() {
         if (truck.getLeft() > 0) {
-
             truck.moveLeft();
             truck1.moveLeft();
         } else {
@@ -309,7 +285,6 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
             bike.setRight(bike.getSprite().getWidth());
             bike1.setRight(bike1.getSprite().getWidth());
         }
-
     }
 
     public void calculatePoints(Canvas canvas) {
