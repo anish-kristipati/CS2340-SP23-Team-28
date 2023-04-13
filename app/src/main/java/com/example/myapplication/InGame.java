@@ -103,6 +103,7 @@ public class InGame extends Activity implements View.OnTouchListener {
 
     public void winGame() {
         if (player.getYLevel() >= 16) {
+            Game.addWinBonus(); // add bonus points for winning the game
             Intent switchStatement = new Intent(InGame.this, GameWinScreen.class);
             startActivity(switchStatement);
         }
