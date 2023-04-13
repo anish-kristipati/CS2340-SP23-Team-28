@@ -103,7 +103,7 @@ public class InGame extends Activity implements View.OnTouchListener {
 
     public void winGame() {
         if (player.getYLevel() >= 16) {
-            Intent switchStatement = new Intent(InGame.this, WinScreen.class);
+            Intent switchStatement = new Intent(InGame.this, GameWinScreen.class);
             startActivity(switchStatement);
         }
     }
