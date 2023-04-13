@@ -12,6 +12,8 @@ import androidx.core.content.ContextCompat;
 import com.example.myapplication.graphics.SpriteRectangle;
 import com.example.myapplication.graphics.SpriteSheet;
 
+import java.util.Random;
+
 //TODO Refactor variable names and add variable speeds based on lane
 // (higher lane has higher speed, lower lanes have lower speed)
 // TODO make the high score variable (maxPoints) persistent
@@ -38,11 +40,12 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
     private int resizeX;
     private int resizeY;
 
+
     private final int[] pointsArray =
         {0, 50, 30, 15, 0, 60, 60, 60, 60, 0, 50, 30, 0, 60, 60, 0, 15, 100};
     private int pointIndex;
 
-    public Game(Context context) {
+    public Game(Context context, int dif) {
         super(context);
 
         //Gets the surface holder and adds callback to game
@@ -50,58 +53,60 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
         surfaceHolder.addCallback(this);
         //this.gameLoop = new GameLoop(this, surfaceHolder);
         spriteSheetPlayer = new SpriteSheet(context);
-        constructObstacles(context);
+        constructObstacles(context, dif);
         this.setFocusable(true);
 
     }
 
-    private void constructObstacles(Context context) {
+    private int getRand(int ub){ //  [0, ub] inclusive
+        Random rand = new Random();
+        return rand.nextInt(ub + 1);
+    }
+    private void constructObstacles(Context context, int dif) {
         SpriteSheet spriteSheetTruck = new SpriteSheet(context);
         spriteSheetTruck.setBitmap("truck");
+
         this.truck = new SpriteRectangle(getContext(), 0, 2608, spriteSheetTruck.getSprite());
         this.truck.setResizeXY(spriteData[3], spriteData[4]);
-        this.truck.setShift(spriteData[5]);
+        // this.truck.setShift(spriteData[5]);
+        this.truck.setShift(2*dif + getRand(2));
 
         this.truck1 = new SpriteRectangle(getContext(), 0, 1176, spriteSheetTruck.getSprite());
         this.truck1.setResizeXY(spriteData[3], spriteData[4]);
-        this.truck1.setShift(spriteData[5]);
+        //this.truck1.setShift(spriteData[5]);
+        this.truck1.setShift(2*dif + getRand(2));
 
         SpriteSheet spriteSheetCar = new SpriteSheet(context);
         spriteSheetCar.setBitmap("blueCar");
         this.car = new SpriteRectangle(getContext(), 1014, 2446, spriteSheetCar.getSprite());
         this.car.setResizeXY(spriteData[6], spriteData[7]);
-        this.car.setShift(spriteData[8]);
+        // this.car.setShift(spriteData[8]);
+        this.car.setShift(2*dif + getRand(2));
 
         this.car1 = new SpriteRectangle(getContext(), 1014, 1014, spriteSheetCar.getSprite());
         this.car1.setResizeXY(spriteData[6], spriteData[7]);
-        this.car1.setShift(spriteData[8]);
+        // this.car1.setShift(spriteData[8]);
+        this.car1.setShift(2*dif + getRand(2));
 
         SpriteSheet spriteSheetBike = new SpriteSheet(context);
         spriteSheetBike.setBitmap("motorcycle");
         this.bike = new SpriteRectangle(getContext(), 0, 2284, spriteSheetBike.getSprite());
         this.bike.setResizeXY(spriteData[9], spriteData[10]);
-        this.bike.setShift(spriteData[11]);
+        // this.bike.setShift(spriteData[11]);
+        this.bike.setShift(2*dif + getRand(2));
 
         this.bike1 = new SpriteRectangle(getContext(), 0, 204, spriteSheetBike.getSprite());
         this.bike1.setResizeXY(spriteData[9], spriteData[10]);
-        this.bike1.setShift(spriteData[11]);
+        // this.bike1.setShift(spriteData[11]);
+        this.bike1.setShift(2*dif + getRand(2));
     }
 
     private boolean checkCollision(SpriteRectangle sr) {
         if (player.getLeft() <= sr.getLeft() && player.getRight() >= sr.getLeft()) {
-            /*
-            System.out.println(player.getLeft());
-            System.out.println(player.getRight());
-            System.out.println(sr.getLeft());
-            System.out.println(sr.getRight());
-
-            System.out.println("flag 1");*/
             return true;
         } else if (player.getRight() >= sr.getRight() && player.getLeft() <= sr.getRight()) {
-            // System.out.println("flag 2");
             return true;
         } else if (player.getRight() <= sr.getRight() && player.getLeft() >= sr.getLeft()) {
-            //System.out.println("flag 3");
             return true;
         }
         return false;
@@ -114,7 +119,6 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
         player.setTop(2770);
         pointIndex = 0;
         points = 0;
-
     }
 
     private void obstacleCollision(Canvas canvas) {
@@ -123,11 +127,6 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
         paint.setTextSize(80);
         if (player.getYLevel() == 1) {
             if (checkCollision(truck)) {
-                System.out.println(
-                    "TRUCK LEFT: " + truck.getLeft() + " TRUCK RIGHT: " + truck.getRight());
-                System.out.println(
-                    "PLAYER LEFT: " + player.getLeft() + " PLAYER RIGHT: " + player.getRight()
-                        + "Width " + (player.getLeft() - player.getRight()));
                 canvas.drawText(
                     "Points: " + points + "  Lives: " + lives-- + " Difficulty: " + difficulty,
                     100, 120, paint);
@@ -135,7 +134,6 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
             }
         } else if (player.getYLevel() == 2) {
             if (checkCollision(car)) {
-                System.out.println("CAR");
                 canvas.drawText(
                     "Points: " + points + "  Lives: " + lives-- + " Difficulty: " + difficulty,
                     100, 120, paint);
@@ -143,7 +141,6 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
             }
         } else if (player.getYLevel() == 3) {
             if (checkCollision(bike)) {
-                System.out.println("BIKE");
                 canvas.drawText(
                     "Points: " + points + "  Lives: " + lives-- + " Difficulty: " + difficulty,
                     100, 120, paint);
@@ -168,7 +165,6 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
             }
         } else if (player.getYLevel() == 10) {
             if (checkCollision(truck1)) {
-                System.out.println("TRUCK1");
                 canvas.drawText(
                     "Points: " + points + "  Lives: " + lives-- + " Difficulty: " + difficulty,
                     100, 120, paint);
@@ -176,7 +172,6 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
             }
         } else if (player.getYLevel() == 11) {
             if (checkCollision(car1)) {
-                System.out.println("CAR1");
                 canvas.drawText(
                     "Points: " + points + "  Lives: " + lives-- + " Difficulty: " + difficulty,
                     100, 120, paint);
@@ -198,7 +193,6 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
                 playerReset();
             }
         }
-
     }
 
     public void setSprite(String character) {
@@ -207,8 +201,6 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
             spriteSheetPlayer.getSprite()); // TODO --> This line sets player original position
         this.player.setResizeXY(spriteData[0], spriteData[1]);
         this.player.setShift(spriteData[2]);
-        System.out.println(spriteSheetPlayer.getWidth());
-        System.out.println(player.getLeft() + " " + player.getRight());
     }
 
     public static void addPoints(int add){
@@ -293,7 +285,6 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
             bike.setRight(bike.getSprite().getWidth());
             bike1.setRight(bike1.getSprite().getWidth());
         }
-
     }
 
     public void calculatePoints(Canvas canvas) {
