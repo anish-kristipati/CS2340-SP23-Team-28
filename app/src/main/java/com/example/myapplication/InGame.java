@@ -32,7 +32,7 @@ public class InGame extends Activity implements View.OnTouchListener {
             user.setDifficulty(1);
         }
         //Set content view to game
-        game = new Game(this);
+        game = new Game(this, user.getDifficulty());
         game.setSprite(user.getSprite());
         game.setCharacterData(user.getLives(), user.getDifficulty(), user.getPoints());
         game.setBackgroundColor(Color.WHITE);

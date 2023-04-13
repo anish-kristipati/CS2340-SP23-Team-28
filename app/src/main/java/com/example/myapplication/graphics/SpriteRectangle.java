@@ -51,6 +51,7 @@ public class SpriteRectangle extends Rectangle {
     }
 
     public void moveRight() {
+        //System.out.println("adding " + shift);
         left += shift;
         right += shift;
     }
