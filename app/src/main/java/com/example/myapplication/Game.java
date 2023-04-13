@@ -211,6 +211,12 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
         System.out.println(player.getLeft() + " " + player.getRight());
     }
 
+    public static void addPoints(int add){
+        points += add;
+    }
+    public static void addWinBonus(){
+        addPoints(200);
+    }
     public static int getPoints() {
         return points;
     }
@@ -296,7 +302,7 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
         paint.setTextSize(80);
         if (player.getTop() < minPos) {
             minPos = player.getTop();
-            points += pointsArray[++pointIndex];
+            addPoints(pointsArray[++pointIndex]);
             maxPoints = Math.max(maxPoints, points);
         }
         // TODO make player lose life
