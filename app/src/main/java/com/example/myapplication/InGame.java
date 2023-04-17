@@ -20,6 +20,8 @@ public class InGame extends Activity implements View.OnTouchListener {
 
     @SuppressLint("ClickableViewAccessibility")
     @Override
+
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 

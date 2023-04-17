@@ -19,6 +19,7 @@ import java.util.Random;
 // TODO make the high score variable (maxPoints) persistent
 public class Game extends SurfaceView implements SurfaceHolder.Callback {
     private SpriteRectangle player;
+    private SpriteRectangle dummy;
     // private Player player;
     private SpriteRectangle truck;
     private SpriteRectangle truck1;
@@ -26,6 +27,8 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
     private SpriteRectangle car1;
     private SpriteRectangle bike;
     private SpriteRectangle bike1;
+    private SpriteRectangle small_log1, small_log2, small_log3;
+    private SpriteRectangle big_log1, big_log2, big_log3;
 
     private final SpriteSheet spriteSheetPlayer;
 
@@ -83,6 +86,7 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
         // this.car.setShift(spriteData[8]);
         this.car.setShift(2*dif + getRand(2));
 
+
         this.car1 = new SpriteRectangle(getContext(), 1014, 1014, spriteSheetCar.getSprite());
         this.car1.setResizeXY(spriteData[6], spriteData[7]);
         // this.car1.setShift(spriteData[8]);
@@ -99,6 +103,50 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
         this.bike1.setResizeXY(spriteData[9], spriteData[10]);
         // this.bike1.setShift(spriteData[11]);
         this.bike1.setShift(2*dif + getRand(2));
+
+        SpriteSheet spriteSheetbig_log1 = new SpriteSheet(context);
+        spriteSheetbig_log1.setBitmap("big_log");
+        this.big_log1 = new SpriteRectangle(getContext(), 0, 670, spriteSheetbig_log1.getSprite()); // dif = 160
+        this.big_log1.setResizeXY(3*spriteData[9], spriteData[10]+10);
+        //this.big_log1.setShift(spriteData[11]);
+        this.big_log1.setShift(2*dif);
+
+        // this.player.setShift(2*dif);
+
+        SpriteSheet spriteSheetsmall_log1 = new SpriteSheet(context);
+        spriteSheetsmall_log1.setBitmap("small_log");
+        this.small_log1 = new SpriteRectangle(getContext(), 0, 510, spriteSheetsmall_log1.getSprite());
+        this.small_log1.setResizeXY(2*spriteData[9], spriteData[10]+10);
+        //this.big_log1.setShift(spriteData[11]);
+        this.small_log1.setShift(2*dif);
+
+        SpriteSheet spriteSheetbig_log2 = new SpriteSheet(context);
+        spriteSheetbig_log2.setBitmap("big_log");
+        this.big_log2 = new SpriteRectangle(getContext(), 0, 1470, spriteSheetbig_log2.getSprite()); // dif = 160
+        this.big_log2.setResizeXY(3*spriteData[9], spriteData[10]+10);
+        //this.big_log1.setShift(spriteData[11]);
+        this.big_log2.setShift(2*dif);
+
+        SpriteSheet spriteSheetsmall_log2 = new SpriteSheet(context);
+        spriteSheetsmall_log2.setBitmap("small_log");
+        this.small_log2 = new SpriteRectangle(getContext(), 0, 1630, spriteSheetsmall_log2.getSprite());
+        this.small_log2.setResizeXY(2*spriteData[9], spriteData[10]+10);
+        //this.big_log1.setShift(spriteData[11]);
+        this.small_log2.setShift(2*dif);
+
+        SpriteSheet spriteSheetbig_log3 = new SpriteSheet(context);
+        spriteSheetbig_log3.setBitmap("big_log");
+        this.big_log3 = new SpriteRectangle(getContext(), 0, 1790, spriteSheetbig_log3.getSprite()); // dif = 160
+        this.big_log3.setResizeXY(3*spriteData[9], spriteData[10]+10);
+        //this.big_log1.setShift(spriteData[11]);
+        this.big_log3.setShift(2*dif);
+
+        SpriteSheet spriteSheetsmall_log3 = new SpriteSheet(context);
+        spriteSheetsmall_log3.setBitmap("small_log");
+        this.small_log3 = new SpriteRectangle(getContext(), 0, 1950, spriteSheetsmall_log3.getSprite());
+        this.small_log3.setResizeXY(2*spriteData[9], spriteData[10]+10);
+        //this.big_log1.setShift(spriteData[11]);
+        this.small_log3.setShift(2*dif);
     }
 
     private boolean checkCollision(SpriteRectangle sr) {
@@ -146,7 +194,9 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
                     100, 120, paint);
                 playerReset();
             }
-        } else if (player.getYLevel() == 5) {
+        }
+        /*
+        else if (player.getYLevel() == 5) {
             if (player.getLeft() >= 0 && player.getLeft() < 510
                 || player.getRight() >= 1000 && player.getRight() <= 1440) {
                 canvas.drawText(
@@ -163,7 +213,8 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
                     100, 120, paint);
                 playerReset();
             }
-        } else if (player.getYLevel() == 10) {
+        } */
+        else if (player.getYLevel() == 10) {
             if (checkCollision(truck1)) {
                 canvas.drawText(
                     "Points: " + points + "  Lives: " + lives-- + " Difficulty: " + difficulty,
@@ -177,7 +228,8 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
                     100, 120, paint);
                 playerReset();
             }
-        } else if (player.getYLevel() == 13 || player.getYLevel() == 14) {
+        }
+        /*else if (player.getYLevel() == 13 || player.getYLevel() == 14) {
             if (player.getLeft() >= 0 && player.getLeft() < 450
                 || player.getRight() > 790 && player.getRight() < 975 || player.getRight() > 1320) {
                 canvas.drawText(
@@ -185,7 +237,8 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
                     100, 120, paint);
                 playerReset();
             }
-        } else if (player.getYLevel() == 16) {
+        } */
+        else if (player.getYLevel() == 16) {
             if (checkCollision(bike1)) {
                 canvas.drawText(
                     "Points: " + points + "  Lives: " + lives-- + " Difficulty: " + difficulty,
@@ -193,7 +246,74 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
                 playerReset();
             }
         }
+        else if (player.getYLevel() == 5) {
+            if (!checkCollision(small_log3)) {
+                canvas.drawText(
+                        "Points: " + points + "  Lives: " + lives-- + " Difficulty: " + difficulty,
+                        100, 120, paint);
+                playerReset();
+            }
+            else{
+                player.moveRight(2*difficulty);
+            }
+        }
+        else if (player.getYLevel() == 6) {
+            if (!checkCollision(big_log3)) {
+                canvas.drawText(
+                        "Points: " + points + "  Lives: " + lives-- + " Difficulty: " + difficulty,
+                        100, 120, paint);
+                playerReset();
+            }
+            else{
+                player.moveRight(2*difficulty);
+            }
+        }
+        else if (player.getYLevel() == 7) {
+            if (!checkCollision(small_log2)) {
+                canvas.drawText(
+                        "Points: " + points + "  Lives: " + lives-- + " Difficulty: " + difficulty,
+                        100, 120, paint);
+                playerReset();
+            }
+            else{
+                player.moveRight(2*difficulty);
+            }
+        }
+        else if (player.getYLevel() == 8) {
+            if (!checkCollision(big_log2)) {
+                canvas.drawText(
+                        "Points: " + points + "  Lives: " + lives-- + " Difficulty: " + difficulty,
+                        100, 120, paint);
+                playerReset();
+            }
+            else{
+                player.moveRight(2*difficulty);
+            }
+        }
+        else if (player.getYLevel() == 13) {
+            if (!checkCollision(big_log1)) {
+                canvas.drawText(
+                        "Points: " + points + "  Lives: " + lives-- + " Difficulty: " + difficulty,
+                        100, 120, paint);
+                playerReset();
+            }
+            else{
+               player.moveRight(2*difficulty);
+            }
+        }
+        else if (player.getYLevel() == 14) {
+            if (!checkCollision(small_log1)) {
+                canvas.drawText(
+                        "Points: " + points + "  Lives: " + lives-- + " Difficulty: " + difficulty,
+                        100, 120, paint);
+                playerReset();
+            }
+            else{
+                player.moveRight(2*difficulty);
+            }
+        }
     }
+
 
     public void setSprite(String character) {
         spriteSheetPlayer.setBitmap(character);
@@ -244,20 +364,36 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
     public void draw(Canvas canvas) {
         super.draw(canvas);
         calculatePoints(canvas);
-        obstacleMovement();
-        player.draw(canvas);
+        obstacleMovement(canvas);
+
+        player.drawBackground(canvas);
+
+        big_log1.draw1(canvas);
+        small_log1.draw1(canvas);
+        big_log2.draw1(canvas);
+        small_log2.draw1(canvas);
+        big_log3.draw1(canvas);
+        small_log3.draw1(canvas);
+
+        //dummy.draw(canvas);
+        player.draw1(canvas);
+
         truck.draw1(canvas);
         truck1.draw1(canvas);
         car.draw1(canvas);
         car1.draw1(canvas);
         bike.draw1(canvas);
         bike1.draw1(canvas);
+
         obstacleCollision(canvas);
         calculatePoints(canvas); //TODO Clean
         invalidate();
     }
 
-    private void obstacleMovement() {
+    private void obstacleMovement(Canvas canvas) {
+        Paint paint = new Paint();
+        paint.setColor(ContextCompat.getColor(getContext(), R.color.yellow));
+        paint.setTextSize(80);
         if (truck.getLeft() > 0) {
             truck.moveLeft();
             truck1.moveLeft();
@@ -284,6 +420,53 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
             bike1.setLeft(0);
             bike.setRight(bike.getSprite().getWidth());
             bike1.setRight(bike1.getSprite().getWidth());
+        }
+
+        if (big_log1.getLeft() <= 1440) {
+            big_log1.moveRight();
+           // player.moveRight();
+        } else {
+            big_log1.setLeft(0);
+            big_log1.setRight(big_log1.getSprite().getWidth());
+        }
+        if (small_log1.getLeft() <= 1440) {
+            small_log1.moveRight();
+        } else {
+            small_log1.setLeft(0);
+            small_log1.setRight(small_log1.getSprite().getWidth());
+        }
+        if (big_log2.getLeft() <= 1440) {
+            big_log2.moveRight();
+        } else {
+            big_log2.setLeft(0);
+            big_log2.setRight(big_log2.getSprite().getWidth());
+        }
+        if (small_log2.getLeft() <= 1440) {
+            small_log2.moveRight();
+        } else {
+            small_log2.setLeft(0);
+            small_log2.setRight(small_log2.getSprite().getWidth());
+        }
+
+        if (big_log3.getLeft() <= 1440) {
+            big_log3.moveRight();
+        } else {
+            big_log3.setLeft(0);
+            big_log3.setRight(big_log3.getSprite().getWidth());
+        }
+        if (small_log3.getLeft() <= 1440) {
+            small_log3.moveRight();
+        } else {
+            small_log3.setLeft(0);
+            small_log3.setRight(small_log2.getSprite().getWidth());
+        }
+        if (!(player.getLeft() <= 1440)) {
+            if (checkCollision(car)) {
+                canvas.drawText(
+                        "Points: " + points + "  Lives: " + lives-- + " Difficulty: " + difficulty,
+                        100, 120, paint);
+                playerReset();
+            }
         }
     }
 

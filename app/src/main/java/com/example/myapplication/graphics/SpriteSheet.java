@@ -19,7 +19,7 @@ public class SpriteSheet {
         this.context = context;
         bitmap = BitmapFactory.decodeResource(context.getResources(), R.drawable.monopoly_shoe);
         background =
-            BitmapFactory.decodeResource(context.getResources(), R.drawable.temp_background_5);
+            BitmapFactory.decodeResource(context.getResources(), R.drawable.background_no_logs);
     }
 
     public Bitmap getBitmap() {
@@ -52,6 +52,15 @@ public class SpriteSheet {
             bitmap = BitmapFactory.decodeResource(context.getResources(), R.drawable.truck,
                 bitmapOptions);
             break;
+        case "small_log":
+            bitmap = BitmapFactory.decodeResource(context.getResources(), R.drawable.small_log,
+                    bitmapOptions);
+            break;
+        case "big_log":
+            bitmap = BitmapFactory.decodeResource(context.getResources(), R.drawable.big_log,
+                    bitmapOptions);
+            break;
+
         default:
             System.out.println("Whoops");
             break;
