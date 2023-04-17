@@ -21,7 +21,7 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
     private SpriteRectangle player;
     private SpriteRectangle dummy;
     // private Player player;
-    private SpriteRectangle truck;
+    private SpriteRectangle truck0;
     private SpriteRectangle truck1;
     private SpriteRectangle car;
     private SpriteRectangle car1;
@@ -69,10 +69,10 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
         SpriteSheet spriteSheetTruck = new SpriteSheet(context);
         spriteSheetTruck.setBitmap("truck");
 
-        this.truck = new SpriteRectangle(getContext(), 0, 2608, spriteSheetTruck.getSprite());
-        this.truck.setResizeXY(spriteData[3], spriteData[4]);
+        this.truck0 = new SpriteRectangle(getContext(), 0, 2608, spriteSheetTruck.getSprite());
+        this.truck0.setResizeXY(spriteData[3], spriteData[4]);
         // this.truck.setShift(spriteData[5]);
-        this.truck.setShift(2*dif + getRand(2));
+        this.truck0.setShift(2*dif + getRand(2));
 
         this.truck1 = new SpriteRectangle(getContext(), 0, 1176, spriteSheetTruck.getSprite());
         this.truck1.setResizeXY(spriteData[3], spriteData[4]);
@@ -174,7 +174,7 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
         paint.setColor(ContextCompat.getColor(getContext(), R.color.yellow));
         paint.setTextSize(80);
         if (player.getYLevel() == 1) {
-            if (checkCollision(truck)) {
+            if (checkCollision(truck0)) {
                 canvas.drawText(
                     "Points: " + points + "  Lives: " + lives-- + " Difficulty: " + difficulty,
                     100, 120, paint);
@@ -378,7 +378,7 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
         //dummy.draw(canvas);
         player.draw1(canvas);
 
-        truck.draw1(canvas);
+        truck0.draw1(canvas);
         truck1.draw1(canvas);
         car.draw1(canvas);
         car1.draw1(canvas);
@@ -394,13 +394,13 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
         Paint paint = new Paint();
         paint.setColor(ContextCompat.getColor(getContext(), R.color.yellow));
         paint.setTextSize(80);
-        if (truck.getLeft() > 0) {
-            truck.moveLeft();
+        if (truck0.getLeft() > 0) {
+            truck0.moveLeft();
             truck1.moveLeft();
         } else {
-            truck.setLeft(1014);
+            truck0.setLeft(1014);
             truck1.setLeft(1014);
-            truck.setRight(1014 + truck.getSprite().getWidth());
+            truck0.setRight(1014 + truck0.getSprite().getWidth());
             truck1.setRight(1014 + truck1.getSprite().getWidth());
         }
         if (car.getLeft() <= 1440) {
