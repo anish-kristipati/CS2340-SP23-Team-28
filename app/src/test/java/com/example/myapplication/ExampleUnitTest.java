@@ -340,5 +340,59 @@ public class ExampleUnitTest {
         p.reset();
         assertEquals(p.getPoints(), 0);
     }
+    @Test
+    public void testWinScreenPoints() {
+        try (ActivityController<GameWinScreen> controller = Robolectric.buildActivity(
+            GameWinScreen.class)) {
+            controller.setup();
+            GameWinScreen gameWin = controller.get();
+            TextView points = (TextView) gameWin.findViewById(R.id.points1);
+            assertEquals(points.getText().toString(), "Points: 0");
+        }
+    }
+    @Test
+    public void testWinScreenRestart() {
+        try (ActivityController<GameWinScreen> controller = Robolectric.buildActivity(
+            GameWinScreen.class)) {
+            controller.setup();
+            GameWinScreen gameWin = controller.get();
+            Button b1 = gameWin.findViewById(R.id.restart1);
+            assertEquals(b1.isEnabled(), true);
+        }
+    }
+
+    @Test
+    public void winTestButtonExit() {
+        try (ActivityController<GameWinScreen> controller = Robolectric.buildActivity(
+            GameWinScreen.class)) {
+            controller.setup();
+            GameWinScreen gameWin = controller.get();
+            Button b1 = gameWin.findViewById(R.id.exitgame1);
+            assertEquals(b1.isEnabled(), true);
+        }
+    }
+
+    @Test
+    public void textDisplayTest() {
+        //Tests static access to data
+        try (ActivityController<GameWinScreen> controller = Robolectric.buildActivity(
+            GameWinScreen.class)) {
+            controller.setup();
+            GameWinScreen gameWin = controller.get();
+            TextView points = (TextView) gameWin.findViewById(R.id.textView15);
+            assertEquals(points.getText().toString(), "Congratulations you won!");
+        }
+    }
+    @Test
+    public void userDefault() {
+        try(ActivityController<InGame> controller = Robolectric.buildActivity(InGame.class)) {
+            controller.setup();
+            InGame game = controller.get();
+            assertNotNull(game.getUser());
+        }
+    }
+
+
+
 
 }
