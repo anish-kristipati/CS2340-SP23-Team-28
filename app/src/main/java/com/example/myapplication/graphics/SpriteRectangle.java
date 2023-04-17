@@ -20,6 +20,10 @@ public class SpriteRectangle extends Rectangle {
         sprite.draw(canvas, left, top, resizeX, resizeY);
     }
 
+    public void drawBackground(Canvas canvas){
+        sprite.drawBackground(canvas);
+    }
+
     //TODO Change method name
     //TODO refactor image background name
     public void draw1(Canvas canvas) {
@@ -54,6 +58,10 @@ public class SpriteRectangle extends Rectangle {
         //System.out.println("adding " + shift);
         left += shift;
         right += shift;
+    }
+    public void moveRight(int dist){
+        left+=dist;
+        right+=dist;
     }
 
     public void setLeft(int location) {
