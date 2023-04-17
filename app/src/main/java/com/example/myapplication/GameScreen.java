@@ -27,19 +27,7 @@ public class GameScreen extends AppCompatActivity {
         TextView charDisplay = findViewById(R.id.textView7);
         charDisplay.setText("Hey " + user.getName());
         TextView difficulty = findViewById(R.id.textView10);
-        switch (user.getDifficulty()) {
-        case 1:
-            difficulty.setText("Easy");
-            break;
-        case 2:
-            difficulty.setText("Medium");
-            break;
-        case 3:
-            difficulty.setText("Hard");
-            break;
-        default:
-            difficulty.setText("Easy");
-        }
+        setUserDifficultyText(user, difficulty);
         TextView lives = findViewById(R.id.textView12);
         lives.setText("" + user.getLives());
         TextView highScore = findViewById(R.id.textView14);
@@ -56,5 +44,20 @@ public class GameScreen extends AppCompatActivity {
             }
         });
 
+    }
+    private void setUserDifficultyText(Player user, TextView difficulty) {
+        switch (user.getDifficulty()) {
+            case 1:
+                difficulty.setText("Easy");
+                break;
+            case 2:
+                difficulty.setText("Medium");
+                break;
+            case 3:
+                difficulty.setText("Hard");
+                break;
+            default:
+                difficulty.setText("Easy");
+        }
     }
 }

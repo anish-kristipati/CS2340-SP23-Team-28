@@ -340,5 +340,108 @@ public class ExampleUnitTest {
         p.reset();
         assertEquals(p.getPoints(), 0);
     }
+    @Test
+    public void testWinScreenPoints() {
+        try (ActivityController<GameWinScreen> controller = Robolectric.buildActivity(
+            GameWinScreen.class)) {
+            controller.setup();
+            GameWinScreen gameWin = controller.get();
+            TextView points = (TextView) gameWin.findViewById(R.id.points1);
+            assertEquals(points.getText().toString(), "Points: 0");
+        }
+    }
+    @Test
+    public void testWinScreenRestart() {
+        try (ActivityController<GameWinScreen> controller = Robolectric.buildActivity(
+            GameWinScreen.class)) {
+            controller.setup();
+            GameWinScreen gameWin = controller.get();
+            Button b1 = gameWin.findViewById(R.id.restart1);
+            assertEquals(b1.isEnabled(), true);
+        }
+    }
+
+    @Test
+    public void winTestButtonExit() {
+        try (ActivityController<GameWinScreen> controller = Robolectric.buildActivity(
+            GameWinScreen.class)) {
+            controller.setup();
+            GameWinScreen gameWin = controller.get();
+            Button b1 = gameWin.findViewById(R.id.exitgame1);
+            assertEquals(b1.isEnabled(), true);
+        }
+    }
+
+    @Test
+    public void textDisplayTest() {
+        //Tests static access to data
+        try (ActivityController<GameWinScreen> controller = Robolectric.buildActivity(
+            GameWinScreen.class)) {
+            controller.setup();
+            GameWinScreen gameWin = controller.get();
+            TextView points = (TextView) gameWin.findViewById(R.id.textView15);
+            assertEquals(points.getText().toString(), "Congratulations you won!");
+        }
+    }
+    @Test
+    public void userDefault() {
+        try(ActivityController<InGame> controller = Robolectric.buildActivity(InGame.class)) {
+            controller.setup();
+            InGame game = controller.get();
+            assertNotNull(game.getUser());
+        }
+    }
+    @Test
+    public void testGameClassWithBug() {
+        try (ActivityController<InGame> controller = Robolectric.buildActivity(InGame.class)) {
+            controller.setup();
+            InGame game = controller.get();
+            assertNotNull(game.getGame().getLives());
+        }
+    }
+
+    @Test
+    public void testWinTransition() {
+        try (ActivityController<GameWinScreen> controller = Robolectric.buildActivity(
+            GameWinScreen.class)) {
+            controller.setup();
+            GameWinScreen gameWin = controller.get();
+            gameWin.findViewById(R.id.restart1).performClick();
+            Intent expectedIntent = new Intent(gameWin, ActivityMain.class);
+            Intent actual = shadowOf(RuntimeEnvironment.application).getNextStartedActivity();
+            assertEquals(expectedIntent.getComponent(), actual.getComponent());
+        }
+    }
+
+    @Test
+    public void testTransitionWin() {
+        try (ActivityController<InGame> controller = Robolectric.buildActivity(
+            InGame.class)) {
+            controller.setup();
+            InGame gameWin = controller.get();
+            gameWin.getPlayer().setYLevel(20);
+            gameWin.winGame();
+            Intent expectedIntent = new Intent(gameWin, GameWinScreen.class);
+            Intent actual = shadowOf(RuntimeEnvironment.application).getNextStartedActivity();
+            assertEquals(expectedIntent.getComponent(), actual.getComponent());
+        }
+    }
+
+    @Test
+    public void testTransitionLose() {
+        try (ActivityController<InGame> controller = Robolectric.buildActivity(
+            InGame.class)) {
+            controller.setup();
+            InGame gameWin = controller.get();
+            gameWin.getGame().setLives(0);
+            gameWin.endGame();
+            Intent expectedIntent = new Intent(gameWin, GameOverScreen.class);
+            Intent actual = shadowOf(RuntimeEnvironment.application).getNextStartedActivity();
+            assertEquals(expectedIntent.getComponent(), actual.getComponent());
+        }
+    }
+
+
+
 
 }
