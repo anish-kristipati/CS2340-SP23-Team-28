@@ -58,10 +58,11 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
 
     }
 
-    private int getRand(int ub){ //  [0, ub] inclusive
+    private int getRand(int ub) { //  [0, ub] inclusive
         Random rand = new Random();
         return rand.nextInt(ub + 1);
     }
+
     private void constructObstacles(Context context, int dif) {
         SpriteSheet spriteSheetTruck = new SpriteSheet(context);
         spriteSheetTruck.setBitmap("truck");
@@ -69,36 +70,36 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
         this.truck = new SpriteRectangle(getContext(), 0, 2608, spriteSheetTruck.getSprite());
         this.truck.setResizeXY(spriteData[3], spriteData[4]);
         // this.truck.setShift(spriteData[5]);
-        this.truck.setShift(2*dif + getRand(2));
+        this.truck.setShift(2 * dif + getRand(2));
 
         this.truck1 = new SpriteRectangle(getContext(), 0, 1176, spriteSheetTruck.getSprite());
         this.truck1.setResizeXY(spriteData[3], spriteData[4]);
         //this.truck1.setShift(spriteData[5]);
-        this.truck1.setShift(2*dif + getRand(2));
+        this.truck1.setShift(2 * dif + getRand(2));
 
         SpriteSheet spriteSheetCar = new SpriteSheet(context);
         spriteSheetCar.setBitmap("blueCar");
         this.car = new SpriteRectangle(getContext(), 1014, 2446, spriteSheetCar.getSprite());
         this.car.setResizeXY(spriteData[6], spriteData[7]);
         // this.car.setShift(spriteData[8]);
-        this.car.setShift(2*dif + getRand(2));
+        this.car.setShift(2 * dif + getRand(2));
 
         this.car1 = new SpriteRectangle(getContext(), 1014, 1014, spriteSheetCar.getSprite());
         this.car1.setResizeXY(spriteData[6], spriteData[7]);
         // this.car1.setShift(spriteData[8]);
-        this.car1.setShift(2*dif + getRand(2));
+        this.car1.setShift(2 * dif + getRand(2));
 
         SpriteSheet spriteSheetBike = new SpriteSheet(context);
         spriteSheetBike.setBitmap("motorcycle");
         this.bike = new SpriteRectangle(getContext(), 0, 2284, spriteSheetBike.getSprite());
         this.bike.setResizeXY(spriteData[9], spriteData[10]);
         // this.bike.setShift(spriteData[11]);
-        this.bike.setShift(2*dif + getRand(2));
+        this.bike.setShift(2 * dif + getRand(2));
 
         this.bike1 = new SpriteRectangle(getContext(), 0, 204, spriteSheetBike.getSprite());
         this.bike1.setResizeXY(spriteData[9], spriteData[10]);
         // this.bike1.setShift(spriteData[11]);
-        this.bike1.setShift(2*dif + getRand(2));
+        this.bike1.setShift(2 * dif + getRand(2));
     }
 
     private boolean checkCollision(SpriteRectangle sr) {
@@ -203,12 +204,14 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
         this.player.setShift(spriteData[2]);
     }
 
-    public static void addPoints(int add){
+    public static void addPoints(int add) {
         points += add;
     }
-    public static void addWinBonus(){
+
+    public static void addWinBonus() {
         addPoints(200);
     }
+
     public static int getPoints() {
         return points;
     }
@@ -312,6 +315,10 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
 
     public int getLives() {
         return lives;
+    }
+
+    public void setLives(int lives) {
+        this.lives = lives;
     }
 
     public SpriteSheet getSpriteSheetPlayer() {
