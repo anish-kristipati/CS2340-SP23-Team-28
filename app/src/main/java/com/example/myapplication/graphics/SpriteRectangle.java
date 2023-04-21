@@ -20,7 +20,7 @@ public class SpriteRectangle extends Rectangle {
         sprite.draw(canvas, left, top, resizeX, resizeY);
     }
 
-    public void drawBackground(Canvas canvas){
+    public void drawBackground(Canvas canvas) {
         sprite.drawBackground(canvas);
     }
 
@@ -59,9 +59,10 @@ public class SpriteRectangle extends Rectangle {
         left += shift;
         right += shift;
     }
-    public void moveRight(int dist){
-        left+=dist;
-        right+=dist;
+
+    public void moveRight(int dist) {
+        left += dist;
+        right += dist;
     }
 
     public void setLeft(int location) {

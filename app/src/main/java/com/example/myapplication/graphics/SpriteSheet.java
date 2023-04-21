@@ -54,11 +54,11 @@ public class SpriteSheet {
             break;
         case "small_log":
             bitmap = BitmapFactory.decodeResource(context.getResources(), R.drawable.small_log,
-                    bitmapOptions);
+                bitmapOptions);
             break;
         case "big_log":
             bitmap = BitmapFactory.decodeResource(context.getResources(), R.drawable.big_log,
-                    bitmapOptions);
+                bitmapOptions);
             break;
 
         default:

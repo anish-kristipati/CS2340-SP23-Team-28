@@ -27,8 +27,12 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
     private SpriteRectangle car1;
     private SpriteRectangle bike;
     private SpriteRectangle bike1;
-    private SpriteRectangle small_log1, small_log2, small_log3;
-    private SpriteRectangle big_log1, big_log2, big_log3;
+    private SpriteRectangle smallLog1;
+    private SpriteRectangle smallLog2;
+    private SpriteRectangle smallLog3;
+    private SpriteRectangle bigLog1;
+    private SpriteRectangle bigLog2;
+    private SpriteRectangle bigLog3;
 
     private final SpriteSheet spriteSheetPlayer;
 
@@ -61,10 +65,11 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
 
     }
 
-    private int getRand(int ub){ //  [0, ub] inclusive
+    private int getRand(int ub) { //  [0, ub] inclusive
         Random rand = new Random();
         return rand.nextInt(ub + 1);
     }
+
     private void constructObstacles(Context context, int dif) {
         SpriteSheet spriteSheetTruck = new SpriteSheet(context);
         spriteSheetTruck.setBitmap("truck");
@@ -72,81 +77,87 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
         this.truck0 = new SpriteRectangle(getContext(), 0, 2608, spriteSheetTruck.getSprite());
         this.truck0.setResizeXY(spriteData[3], spriteData[4]);
         // this.truck.setShift(spriteData[5]);
-        this.truck0.setShift(2*dif + getRand(2));
+        this.truck0.setShift(2 * dif + getRand(2));
 
         this.truck1 = new SpriteRectangle(getContext(), 0, 1176, spriteSheetTruck.getSprite());
         this.truck1.setResizeXY(spriteData[3], spriteData[4]);
         //this.truck1.setShift(spriteData[5]);
-        this.truck1.setShift(2*dif + getRand(2));
+        this.truck1.setShift(2 * dif + getRand(2));
 
         SpriteSheet spriteSheetCar = new SpriteSheet(context);
         spriteSheetCar.setBitmap("blueCar");
         this.car = new SpriteRectangle(getContext(), 1014, 2446, spriteSheetCar.getSprite());
         this.car.setResizeXY(spriteData[6], spriteData[7]);
         // this.car.setShift(spriteData[8]);
-        this.car.setShift(2*dif + getRand(2));
+        this.car.setShift(2 * dif + getRand(2));
 
 
         this.car1 = new SpriteRectangle(getContext(), 1014, 1014, spriteSheetCar.getSprite());
         this.car1.setResizeXY(spriteData[6], spriteData[7]);
         // this.car1.setShift(spriteData[8]);
-        this.car1.setShift(2*dif + getRand(2));
+        this.car1.setShift(2 * dif + getRand(2));
 
         SpriteSheet spriteSheetBike = new SpriteSheet(context);
         spriteSheetBike.setBitmap("motorcycle");
         this.bike = new SpriteRectangle(getContext(), 0, 2284, spriteSheetBike.getSprite());
         this.bike.setResizeXY(spriteData[9], spriteData[10]);
         // this.bike.setShift(spriteData[11]);
-        this.bike.setShift(2*dif + getRand(2));
+        this.bike.setShift(2 * dif + getRand(2));
 
         this.bike1 = new SpriteRectangle(getContext(), 0, 204, spriteSheetBike.getSprite());
         this.bike1.setResizeXY(spriteData[9], spriteData[10]);
         // this.bike1.setShift(spriteData[11]);
-        this.bike1.setShift(2*dif + getRand(2));
+        this.bike1.setShift(2 * dif + getRand(2));
 
-        SpriteSheet spriteSheetbig_log1 = new SpriteSheet(context);
-        spriteSheetbig_log1.setBitmap("big_log");
-        this.big_log1 = new SpriteRectangle(getContext(), 0, 670, spriteSheetbig_log1.getSprite()); // dif = 160
-        this.big_log1.setResizeXY(3*spriteData[9], spriteData[10]+10);
+        SpriteSheet spriteSheetbigLog1 = new SpriteSheet(context);
+        spriteSheetbigLog1.setBitmap("big_log");
+        this.bigLog1 =
+            new SpriteRectangle(getContext(), 0, 670, spriteSheetbigLog1.getSprite()); // dif = 160
+        this.bigLog1.setResizeXY(3 * spriteData[9], spriteData[10] + 10);
         //this.big_log1.setShift(spriteData[11]);
-        this.big_log1.setShift(2*dif);
+        this.bigLog1.setShift(2 * dif);
 
         // this.player.setShift(2*dif);
 
-        SpriteSheet spriteSheetsmall_log1 = new SpriteSheet(context);
-        spriteSheetsmall_log1.setBitmap("small_log");
-        this.small_log1 = new SpriteRectangle(getContext(), 0, 510, spriteSheetsmall_log1.getSprite());
-        this.small_log1.setResizeXY(2*spriteData[9], spriteData[10]+10);
+        SpriteSheet spriteSheetsmallLog1 = new SpriteSheet(context);
+        spriteSheetsmallLog1.setBitmap("small_log");
+        this.smallLog1 =
+            new SpriteRectangle(getContext(), 0, 510, spriteSheetsmallLog1.getSprite());
+        this.smallLog1.setResizeXY(2 * spriteData[9], spriteData[10] + 10);
         //this.big_log1.setShift(spriteData[11]);
-        this.small_log1.setShift(2*dif);
+        this.smallLog1.setShift(2 * dif);
 
-        SpriteSheet spriteSheetbig_log2 = new SpriteSheet(context);
-        spriteSheetbig_log2.setBitmap("big_log");
-        this.big_log2 = new SpriteRectangle(getContext(), 0, 1470, spriteSheetbig_log2.getSprite()); // dif = 160
-        this.big_log2.setResizeXY(3*spriteData[9], spriteData[10]+10);
+        SpriteSheet spriteSheetbigLog2 = new SpriteSheet(context);
+        spriteSheetbigLog2.setBitmap("big_log");
+        this.bigLog2 = new SpriteRectangle(getContext(), 0, 1470,
+            spriteSheetbigLog2.getSprite()); // dif = 160
+        this.bigLog2.setResizeXY(3 * spriteData[9], spriteData[10] + 10);
         //this.big_log1.setShift(spriteData[11]);
-        this.big_log2.setShift(2*dif);
+        this.bigLog2.setShift(2 * dif);
 
-        SpriteSheet spriteSheetsmall_log2 = new SpriteSheet(context);
-        spriteSheetsmall_log2.setBitmap("small_log");
-        this.small_log2 = new SpriteRectangle(getContext(), 0, 1630, spriteSheetsmall_log2.getSprite());
-        this.small_log2.setResizeXY(2*spriteData[9], spriteData[10]+10);
+        SpriteSheet spriteSheetsmallLog2 = new SpriteSheet(context);
+        spriteSheetsmallLog2.setBitmap("small_log");
+        this.smallLog2 =
+            new SpriteRectangle(getContext(), 0, 1630, spriteSheetsmallLog2.getSprite());
+        this.smallLog2.setResizeXY(2 * spriteData[9], spriteData[10] + 10);
         //this.big_log1.setShift(spriteData[11]);
-        this.small_log2.setShift(2*dif);
+        this.smallLog2.setShift(2 * dif);
 
-        SpriteSheet spriteSheetbig_log3 = new SpriteSheet(context);
-        spriteSheetbig_log3.setBitmap("big_log");
-        this.big_log3 = new SpriteRectangle(getContext(), 0, 1790, spriteSheetbig_log3.getSprite()); // dif = 160
-        this.big_log3.setResizeXY(3*spriteData[9], spriteData[10]+10);
+        SpriteSheet spriteSheetbigLog3 = new SpriteSheet(context);
+        spriteSheetbigLog3.setBitmap("big_log");
+        this.bigLog3 = new SpriteRectangle(getContext(), 0, 1790,
+            spriteSheetbigLog3.getSprite()); // dif = 160
+        this.bigLog3.setResizeXY(3 * spriteData[9], spriteData[10] + 10);
         //this.big_log1.setShift(spriteData[11]);
-        this.big_log3.setShift(2*dif);
+        this.bigLog3.setShift(2 * dif);
 
-        SpriteSheet spriteSheetsmall_log3 = new SpriteSheet(context);
-        spriteSheetsmall_log3.setBitmap("small_log");
-        this.small_log3 = new SpriteRectangle(getContext(), 0, 1950, spriteSheetsmall_log3.getSprite());
-        this.small_log3.setResizeXY(2*spriteData[9], spriteData[10]+10);
+        SpriteSheet spriteSheetsmallLog3 = new SpriteSheet(context);
+        spriteSheetsmallLog3.setBitmap("small_log");
+        this.smallLog3 =
+            new SpriteRectangle(getContext(), 0, 1950, spriteSheetsmallLog3.getSprite());
+        this.smallLog3.setResizeXY(2 * spriteData[9], spriteData[10] + 10);
         //this.big_log1.setShift(spriteData[11]);
-        this.small_log3.setShift(2*dif);
+        this.smallLog3.setShift(2 * dif);
     }
 
     private boolean checkCollision(SpriteRectangle sr) {
@@ -194,27 +205,7 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
                     100, 120, paint);
                 playerReset();
             }
-        }
-        /*
-        else if (player.getYLevel() == 5) {
-            if (player.getLeft() >= 0 && player.getLeft() < 510
-                || player.getRight() >= 1000 && player.getRight() <= 1440) {
-                canvas.drawText(
-                    "Points: " + points + "  Lives: " + lives-- + " Difficulty: " + difficulty,
-                    100, 120, paint);
-                playerReset();
-            }
-
-        } else if (player.getYLevel() == 6 || player.getYLevel() == 7 || player.getYLevel() == 8) {
-            if (player.getLeft() >= 0 && player.getLeft() < 450
-                || player.getRight() > 790 && player.getRight() < 975 || player.getRight() > 1320) {
-                canvas.drawText(
-                    "Points: " + points + "  Lives: " + lives-- + " Difficulty: " + difficulty,
-                    100, 120, paint);
-                playerReset();
-            }
-        } */
-        else if (player.getYLevel() == 10) {
+        } else if (player.getYLevel() == 10) {
             if (checkCollision(truck1)) {
                 canvas.drawText(
                     "Points: " + points + "  Lives: " + lives-- + " Difficulty: " + difficulty,
@@ -228,88 +219,66 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
                     100, 120, paint);
                 playerReset();
             }
-        }
-        /*else if (player.getYLevel() == 13 || player.getYLevel() == 14) {
-            if (player.getLeft() >= 0 && player.getLeft() < 450
-                || player.getRight() > 790 && player.getRight() < 975 || player.getRight() > 1320) {
-                canvas.drawText(
-                    "Points: " + points + "  Lives: " + lives-- + " Difficulty: " + difficulty,
-                    100, 120, paint);
-                playerReset();
-            }
-        } */
-        else if (player.getYLevel() == 16) {
+        } else if (player.getYLevel() == 16) {
             if (checkCollision(bike1)) {
                 canvas.drawText(
                     "Points: " + points + "  Lives: " + lives-- + " Difficulty: " + difficulty,
                     100, 120, paint);
                 playerReset();
             }
-        }
-        else if (player.getYLevel() == 5) {
-            if (!checkCollision(small_log3)) {
+        } else if (player.getYLevel() == 5) {
+            if (!checkCollision(smallLog3)) {
                 canvas.drawText(
-                        "Points: " + points + "  Lives: " + lives-- + " Difficulty: " + difficulty,
-                        100, 120, paint);
+                    "Points: " + points + "  Lives: " + lives-- + " Difficulty: " + difficulty,
+                    100, 120, paint);
                 playerReset();
+            } else {
+                player.moveRight(2 * difficulty);
             }
-            else{
-                player.moveRight(2*difficulty);
-            }
-        }
-        else if (player.getYLevel() == 6) {
-            if (!checkCollision(big_log3)) {
+        } else if (player.getYLevel() == 6) {
+            if (!checkCollision(bigLog3)) {
                 canvas.drawText(
-                        "Points: " + points + "  Lives: " + lives-- + " Difficulty: " + difficulty,
-                        100, 120, paint);
+                    "Points: " + points + "  Lives: " + lives-- + " Difficulty: " + difficulty,
+                    100, 120, paint);
                 playerReset();
+            } else {
+                player.moveRight(2 * difficulty);
             }
-            else{
-                player.moveRight(2*difficulty);
-            }
-        }
-        else if (player.getYLevel() == 7) {
-            if (!checkCollision(small_log2)) {
+        } else if (player.getYLevel() == 7) {
+            if (!checkCollision(smallLog2)) {
                 canvas.drawText(
-                        "Points: " + points + "  Lives: " + lives-- + " Difficulty: " + difficulty,
-                        100, 120, paint);
+                    "Points: " + points + "  Lives: " + lives-- + " Difficulty: " + difficulty,
+                    100, 120, paint);
                 playerReset();
+            } else {
+                player.moveRight(2 * difficulty);
             }
-            else{
-                player.moveRight(2*difficulty);
-            }
-        }
-        else if (player.getYLevel() == 8) {
-            if (!checkCollision(big_log2)) {
+        } else if (player.getYLevel() == 8) {
+            if (!checkCollision(bigLog2)) {
                 canvas.drawText(
-                        "Points: " + points + "  Lives: " + lives-- + " Difficulty: " + difficulty,
-                        100, 120, paint);
+                    "Points: " + points + "  Lives: " + lives-- + " Difficulty: " + difficulty,
+                    100, 120, paint);
                 playerReset();
+            } else {
+                player.moveRight(2 * difficulty);
             }
-            else{
-                player.moveRight(2*difficulty);
-            }
-        }
-        else if (player.getYLevel() == 13) {
-            if (!checkCollision(big_log1)) {
+        } else if (player.getYLevel() == 13) {
+            if (!checkCollision(bigLog1)) {
                 canvas.drawText(
-                        "Points: " + points + "  Lives: " + lives-- + " Difficulty: " + difficulty,
-                        100, 120, paint);
+                    "Points: " + points + "  Lives: " + lives-- + " Difficulty: " + difficulty,
+                    100, 120, paint);
                 playerReset();
+            } else {
+                player.moveRight(2 * difficulty);
             }
-            else{
-               player.moveRight(2*difficulty);
-            }
-        }
-        else if (player.getYLevel() == 14) {
-            if (!checkCollision(small_log1)) {
+        } else if (player.getYLevel() == 14) {
+            if (!checkCollision(smallLog1)) {
                 canvas.drawText(
-                        "Points: " + points + "  Lives: " + lives-- + " Difficulty: " + difficulty,
-                        100, 120, paint);
+                    "Points: " + points + "  Lives: " + lives-- + " Difficulty: " + difficulty,
+                    100, 120, paint);
                 playerReset();
-            }
-            else{
-                player.moveRight(2*difficulty);
+            } else {
+                player.moveRight(2 * difficulty);
             }
         }
     }
@@ -323,12 +292,14 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
         this.player.setShift(spriteData[2]);
     }
 
-    public static void addPoints(int add){
+    public static void addPoints(int add) {
         points += add;
     }
-    public static void addWinBonus(){
+
+    public static void addWinBonus() {
         addPoints(200);
     }
+
     public static int getPoints() {
         return points;
     }
@@ -368,12 +339,12 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
 
         player.drawBackground(canvas);
 
-        big_log1.draw1(canvas);
-        small_log1.draw1(canvas);
-        big_log2.draw1(canvas);
-        small_log2.draw1(canvas);
-        big_log3.draw1(canvas);
-        small_log3.draw1(canvas);
+        bigLog1.draw1(canvas);
+        smallLog1.draw1(canvas);
+        bigLog2.draw1(canvas);
+        smallLog2.draw1(canvas);
+        bigLog3.draw1(canvas);
+        smallLog3.draw1(canvas);
 
         //dummy.draw(canvas);
         player.draw1(canvas);
@@ -422,49 +393,49 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
             bike1.setRight(bike1.getSprite().getWidth());
         }
 
-        if (big_log1.getLeft() <= 1440) {
-            big_log1.moveRight();
-           // player.moveRight();
+        if (bigLog1.getLeft() <= 1440) {
+            bigLog1.moveRight();
+            // player.moveRight();
         } else {
-            big_log1.setLeft(0);
-            big_log1.setRight(big_log1.getSprite().getWidth());
+            bigLog1.setLeft(0);
+            bigLog1.setRight(bigLog1.getSprite().getWidth());
         }
-        if (small_log1.getLeft() <= 1440) {
-            small_log1.moveRight();
+        if (smallLog1.getLeft() <= 1440) {
+            smallLog1.moveRight();
         } else {
-            small_log1.setLeft(0);
-            small_log1.setRight(small_log1.getSprite().getWidth());
+            smallLog1.setLeft(0);
+            smallLog1.setRight(smallLog1.getSprite().getWidth());
         }
-        if (big_log2.getLeft() <= 1440) {
-            big_log2.moveRight();
+        if (bigLog2.getLeft() <= 1440) {
+            bigLog2.moveRight();
         } else {
-            big_log2.setLeft(0);
-            big_log2.setRight(big_log2.getSprite().getWidth());
+            bigLog2.setLeft(0);
+            bigLog2.setRight(bigLog2.getSprite().getWidth());
         }
-        if (small_log2.getLeft() <= 1440) {
-            small_log2.moveRight();
+        if (smallLog2.getLeft() <= 1440) {
+            smallLog2.moveRight();
         } else {
-            small_log2.setLeft(0);
-            small_log2.setRight(small_log2.getSprite().getWidth());
+            smallLog2.setLeft(0);
+            smallLog2.setRight(smallLog2.getSprite().getWidth());
         }
 
-        if (big_log3.getLeft() <= 1440) {
-            big_log3.moveRight();
+        if (bigLog3.getLeft() <= 1440) {
+            bigLog3.moveRight();
         } else {
-            big_log3.setLeft(0);
-            big_log3.setRight(big_log3.getSprite().getWidth());
+            bigLog3.setLeft(0);
+            bigLog3.setRight(bigLog3.getSprite().getWidth());
         }
-        if (small_log3.getLeft() <= 1440) {
-            small_log3.moveRight();
+        if (smallLog3.getLeft() <= 1440) {
+            smallLog3.moveRight();
         } else {
-            small_log3.setLeft(0);
-            small_log3.setRight(small_log2.getSprite().getWidth());
+            smallLog3.setLeft(0);
+            smallLog3.setRight(smallLog2.getSprite().getWidth());
         }
         if (!(player.getLeft() <= 1440)) {
             if (checkCollision(car)) {
                 canvas.drawText(
-                        "Points: " + points + "  Lives: " + lives-- + " Difficulty: " + difficulty,
-                        100, 120, paint);
+                    "Points: " + points + "  Lives: " + lives-- + " Difficulty: " + difficulty,
+                    100, 120, paint);
                 playerReset();
             }
         }
@@ -495,6 +466,10 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
 
     public int getLives() {
         return lives;
+    }
+
+    public void setLives(int lives) {
+        this.lives = lives;
     }
 
     public SpriteSheet getSpriteSheetPlayer() {

@@ -45,19 +45,20 @@ public class GameScreen extends AppCompatActivity {
         });
 
     }
+
     private void setUserDifficultyText(Player user, TextView difficulty) {
         switch (user.getDifficulty()) {
-            case 1:
-                difficulty.setText("Easy");
-                break;
-            case 2:
-                difficulty.setText("Medium");
-                break;
-            case 3:
-                difficulty.setText("Hard");
-                break;
-            default:
-                difficulty.setText("Easy");
+        case 1:
+            difficulty.setText("Easy");
+            break;
+        case 2:
+            difficulty.setText("Medium");
+            break;
+        case 3:
+            difficulty.setText("Hard");
+            break;
+        default:
+            difficulty.setText("Easy");
         }
     }
 }

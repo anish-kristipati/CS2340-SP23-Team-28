@@ -340,6 +340,7 @@ public class ExampleUnitTest {
         p.reset();
         assertEquals(p.getPoints(), 0);
     }
+
     @Test
     public void testWinScreenPoints() {
         try (ActivityController<GameWinScreen> controller = Robolectric.buildActivity(
@@ -350,6 +351,7 @@ public class ExampleUnitTest {
             assertEquals(points.getText().toString(), "Points: 0");
         }
     }
+
     @Test
     public void testWinScreenRestart() {
         try (ActivityController<GameWinScreen> controller = Robolectric.buildActivity(
@@ -383,14 +385,16 @@ public class ExampleUnitTest {
             assertEquals(points.getText().toString(), "Congratulations you won!");
         }
     }
+
     @Test
     public void userDefault() {
-        try(ActivityController<InGame> controller = Robolectric.buildActivity(InGame.class)) {
+        try (ActivityController<InGame> controller = Robolectric.buildActivity(InGame.class)) {
             controller.setup();
             InGame game = controller.get();
             assertNotNull(game.getUser());
         }
     }
+
     @Test
     public void testGameClassWithBug() {
         try (ActivityController<InGame> controller = Robolectric.buildActivity(InGame.class)) {
@@ -440,8 +444,6 @@ public class ExampleUnitTest {
             assertEquals(expectedIntent.getComponent(), actual.getComponent());
         }
     }
-
-
 
 
 }
